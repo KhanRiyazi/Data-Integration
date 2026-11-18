@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Khan Riyazi | Data Analyst Portfolio</title>
+  <meta name="description" content="Data analyst portfolio: SQL case studies, Python analysis, Power BI dashboards and live apps by Khan Riyazi." />
+  <meta name="color-scheme" content="light dark" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Khan Riyazi | Data Analyst Portfolio" />
+  <meta property="og:description" content="Python developer and graphic designer building a data analyst career. Live analysis demo, projects and GitHub activity." />
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/155373555?s=400&v=4" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Person","name":"Khan Riyazi","alternateName":"Rizwan Ali","jobTitle":"Data Analyst","url":"https://khanriyazi.in/","image":"https://avatars.githubusercontent.com/u/155373555?v=4","sameAs":["https://github.com/KhanRiyazi","https://www.linkedin.com/in/rizwan-ali-389660156/"],"knowsAbout":["SQL","Python","Power BI","Data analysis","Data visualization","Graphic design"]}
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #ffffff;
+      --bg-surface: #f8fafd;
+      --bg-elevated: #ffffff;
+      --text-primary: #1f1f1f;
+      --text-secondary: #444746;
+      --text-muted: #5f6368;
+      --border-light: #e1e3e1;
+      --g-blue: #1a73e8;
+      --g-blue-dark: #1557b0;
+      --g-blue-tint: #e8f0fe;
+      --g-red: #ea4335;
+      --g-yellow: #fbbc04;
+      --g-green: #34a853;
+      --shadow-sm: 0 1px 3px rgba(60,64,67,.12), 0 1px 2px rgba(60,64,67,.24);
+      --shadow-md: 0 4px 12px rgba(60,64,67,.15);
+      --radius-lg: 16px;
+      --radius-pill: 9999px;
+      --code-bg: #f1f3f4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg-page: #131314; --bg-surface: #1e1f20; --bg-elevated: #282a2c;
+        --text-primary: #e3e3e3; --text-secondary: #c4c7c5; --text-muted: #9aa0a6;
+        --border-light: #3c4043; --g-blue: #8ab4f8; --g-blue-dark: #aecbfa; --g-blue-tint: #1c2a43;
+        --code-bg: #0e0f10; --shadow-sm: none; --shadow-md: 0 4px 12px rgba(0,0,0,.5);
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg-page: #131314; --bg-surface: #1e1f20; --bg-elevated: #282a2c;
+      --text-primary: #e3e3e3; --text-secondary: #c4c7c5; --text-muted: #9aa0a6;
+      --border-light: #3c4043; --g-blue: #8ab4f8; --g-blue-dark: #aecbfa; --g-blue-tint: #1c2a43;
+      --code-bg: #0e0f10; --shadow-sm: none; --shadow-md: 0 4px 12px rgba(0,0,0,.5);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-page); color: var(--text-primary); line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    a, button, input { font-family: inherit; }
+    :focus-visible { outline: 3px solid var(--g-blue); outline-offset: 2px; border-radius: 8px; }
+    .skip { position: absolute; left: -999px; background: var(--g-blue); color: #fff; padding: 8px 16px; border-radius: 8px; z-index: 200; }
+    .skip:focus { left: 12px; top: 12px; }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: color-mix(in srgb, var(--bg-page) 92%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-light);
+      padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-primary); font-weight: 600; font-size: 1.1rem; }
+    .brand-dots { display: grid; grid-template-columns: repeat(2, 8px); gap: 3px; }
+    .brand-dots span { width: 8px; height: 8px; border-radius: 50%; }
+    .dot-blue { background: #1a73e8; } .dot-red { background: #ea4335; } .dot-yellow { background: #fbbc04; } .dot-green { background: #34a853; }
+    .brand small { font-weight: 400; color: var(--text-muted); }
+    .nav-links { display: flex; gap: 4px; }
+    .nav-links a { padding: 8px 14px; border-radius: var(--radius-pill); color: var(--text-secondary); font-size: .9rem; font-weight: 500; text-decoration: none; }
+    .nav-links a:hover { background: var(--bg-surface); color: var(--text-primary); }
+    .nav-actions { display: flex; align-items: center; gap: 8px; position: relative; }
+
+    .btn {
+      padding: 10px 20px; border-radius: var(--radius-pill); font-size: .9rem; font-weight: 600;
+      text-decoration: none; cursor: pointer; transition: background .2s, box-shadow .2s;
+      border: 1px solid transparent; display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-primary { background: var(--g-blue); color: #fff; }
+    :root[data-theme="dark"] .btn-primary, :root:not([data-theme="light"]) .btn-primary { color: #131314; }
+    .btn-primary:hover { background: var(--g-blue-dark); box-shadow: var(--shadow-sm); }
+    .btn-outline { background: transparent; color: var(--g-blue); border-color: var(--border-light); }
+    .btn-outline:hover { background: var(--g-blue-tint); border-color: var(--g-blue); }
+
+    .icon-btn {
+      width: 40px; height: 40px; border-radius: 50%; border: none; background: transparent;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); font-size: 1.1rem;
+    }
+    .icon-btn:hover { background: var(--bg-surface); }
+
+    .app-launcher-menu {
+      position: absolute; top: 52px; right: 0; width: 320px; max-width: calc(100vw - 32px);
+      background: var(--bg-elevated); border: 1px solid var(--border-light); border-radius: 24px;
+      box-shadow: var(--shadow-md); padding: 16px; display: none; grid-template-columns: repeat(3, 1fr); gap: 8px;
+    }
+    .app-launcher-menu.active { display: grid; }
+    .launcher-item {
+      display: flex; flex-direction: column; align-items: center; text-align: center; padding: 12px 6px;
+      border-radius: 12px; text-decoration: none; color: var(--text-primary); font-size: .78rem; font-weight: 500;
+      background: none; border: none; cursor: pointer;
+    }
+    .launcher-item:hover { background: var(--bg-surface); }
+    .launcher-icon { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 6px; background: var(--bg-surface); }
+
+    /* Hero */
+    .hero { max-width: 1120px; margin: 56px auto 24px; padding: 0 24px; display: grid; grid-template-columns: 1.05fr .95fr; gap: 40px; align-items: center; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px; background: var(--bg-surface); border: 1px solid var(--border-light);
+      padding: 6px 14px; border-radius: var(--radius-pill); font-size: .85rem; color: var(--text-secondary); margin-bottom: 20px;
+    }
+    .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--g-green); }
+    .hero h1 { font-size: clamp(2rem, 4.4vw, 3.1rem); font-weight: 700; letter-spacing: -.03em; line-height: 1.12; margin-bottom: 16px; }
+    .hero p.lead { font-size: 1.08rem; color: var(--text-secondary); max-width: 52ch; margin-bottom: 24px; }
+    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
+    .skill-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { font-size: .82rem; font-weight: 600; padding: 6px 12px; border-radius: 8px; background: var(--bg-surface); border: 1px solid var(--border-light); color: var(--text-secondary); }
+
+    /* Signature: SQL query + result panel */
+    .query-panel { background: var(--bg-surface); border: 1px solid var(--border-light); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); }
+    .panel-bar { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; border-bottom: 1px solid var(--border-light); font-size: .8rem; color: var(--text-muted); }
+    .panel-bar .run { background: var(--g-blue); color: #fff; border: none; border-radius: var(--radius-pill); padding: 5px 14px; font-weight: 600; font-size: .8rem; cursor: pointer; }
+    :root[data-theme="dark"] .panel-bar .run, :root:not([data-theme="light"]) .panel-bar .run { color: #131314; }
+    pre.sql { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: .8rem; line-height: 1.7; padding: 14px 16px; background: var(--code-bg); overflow-x: auto; color: var(--text-secondary); }
+    .k { color: #1a73e8; font-weight: 500; } .f { color: #188038; } .n { color: #b06000; }
+    :root[data-theme="dark"] .k { color: #8ab4f8; } :root[data-theme="dark"] .f { color: #81c995; } :root[data-theme="dark"] .n { color: #fdd663; }
+    @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .k { color: #8ab4f8; } :root:not([data-theme="light"]) .f { color: #81c995; } :root:not([data-theme="light"]) .n { color: #fdd663; } }
+    .result { padding: 14px 16px; }
+    .bar-row { display: grid; grid-template-columns: 74px 1fr 52px; gap: 10px; align-items: center; font-size: .8rem; margin-bottom: 8px; color: var(--text-secondary); }
+    .bar-track { height: 10px; background: var(--border-light); border-radius: 6px; overflow: hidden; }
+    .bar-fill { height: 100%; width: 0; border-radius: 6px; transition: width .9s cubic-bezier(.2,.8,.2,1); }
+    .bar-row span:last-child { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; color: var(--text-primary); }
+    .panel-note { padding: 0 16px 12px; font-size: .75rem; color: var(--text-muted); }
+
+    /* Stats */
+    .stats { max-width: 1120px; margin: 24px auto 0; padding: 0 24px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .stat { border: 1px solid var(--border-light); border-radius: 12px; padding: 14px 18px; background: var(--bg-surface); }
+    .stat b { display: block; font-size: 1.5rem; letter-spacing: -.02em; }
+    .stat span { font-size: .82rem; color: var(--text-muted); }
+
+    /* Controls */
+    .workspace-controls { max-width: 1120px; margin: 48px auto 16px; padding: 0 24px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; }
+    .section-title { max-width: 1120px; margin: 56px auto 0; padding: 0 24px; }
+    .section-title h2 { font-size: 1.6rem; letter-spacing: -.02em; }
+    .section-title p { color: var(--text-secondary); font-size: .98rem; }
+    .search-box { flex: 1; min-width: 260px; max-width: 400px; position: relative; }
+    .search-box input {
+      width: 100%; padding: 12px 44px 12px 42px; border-radius: var(--radius-pill); border: 1px solid var(--border-light);
+      background: var(--bg-surface); color: var(--text-primary); font-size: .95rem; outline: none; transition: border-color .2s, box-shadow .2s;
+    }
+    .search-box input:focus { background: var(--bg-page); border-color: var(--g-blue); box-shadow: 0 0 0 3px color-mix(in srgb, var(--g-blue) 25%, transparent); }
+    .search-icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); font-size: .95rem; }
+    .kbd { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-family: 'JetBrains Mono', monospace; font-size: .72rem; border: 1px solid var(--border-light); border-radius: 5px; padding: 1px 6px; color: var(--text-muted); }
+    .filter-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+    .pill { padding: 8px 16px; border-radius: var(--radius-pill); border: 1px solid var(--border-light); background: var(--bg-page); color: var(--text-secondary); font-size: .85rem; font-weight: 600; cursor: pointer; }
+    .pill:hover { background: var(--bg-surface); }
+    .pill.active { background: var(--g-blue-tint); color: var(--g-blue); border-color: var(--g-blue); }
+    .result-count { max-width: 1120px; margin: 0 auto 12px; padding: 0 24px; font-size: .85rem; color: var(--text-muted); }
+
+    /* Grid */
+    .grid-container { max-width: 1120px; margin: 0 auto 64px; padding: 0 24px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+    .project-card { background: var(--bg-surface); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 24px; display: flex; flex-direction: column; justify-content: space-between; transition: background .2s, box-shadow .2s; }
+    .project-card:hover { background: var(--bg-elevated); box-shadow: var(--shadow-md); }
+    .card-header { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .app-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; overflow: hidden; border: 1px solid var(--border-light); }
+    .app-icon img { width: 100%; height: 100%; object-fit: cover; }
+    .card-category { font-size: .8rem; font-weight: 600; color: var(--g-blue); }
+    .card-title-group h3 { font-size: 1.05rem; font-weight: 700; line-height: 1.3; }
+    .card-desc { font-size: .92rem; color: var(--text-secondary); margin-bottom: 12px; }
+    .card-impact { font-size: .85rem; color: var(--text-primary); background: var(--g-blue-tint); border-radius: 10px; padding: 8px 12px; margin-bottom: 14px; }
+    .card-impact b { color: var(--g-blue); }
+    .tech-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+    .tag { font-size: .75rem; background: var(--bg-page); border: 1px solid var(--border-light); padding: 3px 10px; border-radius: 6px; color: var(--text-secondary); }
+    .card-links { display: flex; gap: 10px; border-top: 1px solid var(--border-light); padding-top: 14px; }
+    .card-link { flex: 1; text-align: center; padding: 8px 12px; border-radius: 8px; font-size: .85rem; font-weight: 600; text-decoration: none; border: 1px solid var(--border-light); }
+    .link-live { background: var(--g-blue); color: #fff; border-color: var(--g-blue); }
+    :root[data-theme="dark"] .link-live, :root:not([data-theme="light"]) .link-live { color: #131314; }
+    .link-live:hover { background: var(--g-blue-dark); }
+    .link-code { background: var(--bg-page); color: var(--text-primary); }
+    .link-code:hover { background: var(--bg-surface); }
+    .empty { grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px; }
+
+    /* Contact */
+    .contact { max-width: 1120px; margin: 0 auto 64px; padding: 0 24px; }
+    .contact-card { background: var(--g-blue-tint); border-radius: 24px; padding: 40px; display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between; }
+    .contact-card h2 { font-size: 1.5rem; letter-spacing: -.02em; margin-bottom: 4px; }
+    .contact-card p { color: var(--text-secondary); }
+
+    footer { border-top: 1px solid var(--border-light); background: var(--bg-surface); padding: 32px 24px; text-align: center; color: var(--text-secondary); font-size: .9rem; }
+    footer a { color: var(--g-blue); text-decoration: none; font-weight: 600; }
+
+    .nav-links a[aria-current] { background: var(--g-blue-tint); color: var(--g-blue); }
+    .ctrl { display: flex; align-items: center; gap: 8px; }
+    .panel-bar select { font-size: .8rem; padding: 4px 8px; border-radius: 8px; border: 1px solid var(--border-light); background: var(--bg-page); color: var(--text-primary); }
+    .insight { padding: 0 16px 10px; font-size: .88rem; font-weight: 600; color: var(--text-primary); }
+    .about { display: grid; grid-template-columns: 1.1fr 1.4fr; gap: 16px; }
+    .profile { display: flex; gap: 16px; align-items: flex-start; }
+    .profile img { width: 80px; height: 80px; border-radius: 50%; border: 1px solid var(--border-light); flex-shrink: 0; background: var(--bg-page); }
+    .gh-stats { display: flex; gap: 16px; margin-top: 10px; font-size: .82rem; color: var(--text-muted); }
+    .gh-stats b { color: var(--text-primary); font-size: 1rem; }
+    .strengths { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+    .course { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 16px; border: 1px solid var(--border-light); border-radius: 12px; margin-bottom: 8px; background: var(--bg-surface); text-decoration: none; color: inherit; font-size: .92rem; font-weight: 600; }
+    .course:hover { background: var(--bg-elevated); box-shadow: var(--shadow-sm); }
+    .course .done { color: var(--g-green); font-size: .8rem; }
+    .course .todo { color: var(--text-muted); font-size: .8rem; font-weight: 500; }
+    .iframe-wrap { position: relative; aspect-ratio: 16 / 10; border: 1px solid var(--border-light); border-radius: 16px; overflow: hidden; background: var(--bg-surface); }
+    .iframe-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .stack-tag { display: inline-block; font-size: .72rem; font-weight: 600; color: var(--g-blue); background: var(--g-blue-tint); border-radius: 6px; padding: 2px 8px; margin-bottom: 8px; }
+    .drop { border: 2px dashed var(--border-light); border-radius: 16px; padding: 36px 20px; text-align: center; cursor: pointer; background: var(--bg-surface); display: flex; flex-direction: column; gap: 4px; transition: border-color .2s, background .2s; }
+    .drop:hover, .drop.over { border-color: var(--g-blue); background: var(--g-blue-tint); }
+    .drop span { color: var(--text-muted); font-size: .88rem; }
+    .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 18px; }
+    .finds { margin: 8px 0 18px 20px; display: grid; gap: 6px; font-size: .92rem; color: var(--text-secondary); }
+    .tbl-wrap { overflow-x: auto; border: 1px solid var(--border-light); border-radius: 12px; }
+    table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+    th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border-light); white-space: nowrap; }
+    th { background: var(--bg-surface); font-weight: 600; }
+    td.warn { color: var(--g-red); font-weight: 600; }
+    #checkCta { margin-top: 20px; background: var(--g-blue-tint); border-radius: 16px; padding: 18px 22px; }
+    #checkCta p { margin-bottom: 10px; font-weight: 600; }
+    .gets { margin-top: 8px; color: var(--text-primary) !important; }
+    details.box summary { cursor: pointer; font-weight: 600; }
+    details.box[open] summary { margin-bottom: 8px; }
+    dialog { border: 1px solid var(--border-light); border-radius: 20px; max-width: 560px; width: calc(100% - 32px); padding: 24px; background: var(--bg-elevated); color: var(--text-primary); margin: auto; }
+    dialog::backdrop { background: rgba(0,0,0,.45); }
+    .case-row { margin-top: 14px; }
+    .case-row b { font-size: .8rem; color: var(--g-blue); }
+    .case-row p { font-size: .92rem; color: var(--text-secondary); }
+    .card-links { flex-wrap: wrap; }
+    .card-link { min-width: 100px; }
+    button.card-link { cursor: pointer; font-family: inherit; }
+    .sticky-cta { display: none; }
+    @media (max-width: 860px) {
+      .sticky-cta { display: flex; position: fixed; left: 16px; right: 16px; bottom: calc(12px + env(safe-area-inset-bottom, 0px)); justify-content: center; z-index: 90; box-shadow: var(--shadow-md); }
+      body { padding-bottom: 80px; }
+    }
+    .stat b.ok { color: var(--g-green); } .stat b.bad { color: var(--g-red); }
+    .dash { display: grid; grid-template-columns: 1.2fr 1fr; gap: 16px; align-items: start; }
+    .stage summary { display: grid; grid-template-columns: 1fr 90px 40px; gap: 10px; align-items: center; cursor: pointer; font-weight: 600; font-size: .92rem; padding: 10px 0; }
+    .stage + .stage { border-top: 1px solid var(--border-light); }
+    .stage label { display: flex; gap: 8px; align-items: center; font-size: .88rem; padding: 4px 0 4px 4px; color: var(--text-secondary); cursor: pointer; }
+    .stage input { accent-color: var(--g-blue); width: 16px; height: 16px; }
+    .stage .pct { text-align: right; font-size: .8rem; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+    .tier-row { margin-bottom: 12px; }
+    .tier-row > span { display: block; font-size: .82rem; font-weight: 600; margin-bottom: 4px; }
+    .tiers { display: flex; gap: 4px; }
+    .tiers i { flex: 1; text-align: center; font-style: normal; font-size: .68rem; padding: 4px 2px; border-radius: 6px; background: var(--bg-page); border: 1px solid var(--border-light); color: var(--text-muted); }
+    .tiers i.done { background: var(--g-blue-tint); color: var(--g-blue); border-color: transparent; }
+    .tiers i.now { background: var(--g-blue); color: #fff; font-weight: 700; border-color: var(--g-blue); }
+    :root[data-theme="dark"] .tiers i.now, :root:not([data-theme="light"]) .tiers i.now { color: #131314; }
+    .lab { display: grid; grid-template-columns: 1fr 1.1fr; gap: 16px; align-items: start; }
+    .lab-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+    .lab label { display: block; font-size: .78rem; font-weight: 600; color: var(--text-muted); }
+    .lab select, .lab textarea { width: 100%; margin-top: 4px; font-family: inherit; font-size: .88rem; padding: 8px 10px; border-radius: 10px; border: 1px solid var(--border-light); background: var(--bg-page); color: var(--text-primary); }
+    .lab textarea { resize: vertical; line-height: 1.5; }
+    .score { font-size: 2rem; font-weight: 700; letter-spacing: -.02em; }
+    .checks { list-style: none; margin: 10px 0 14px; display: grid; gap: 6px; font-size: .86rem; }
+    .checks li { display: grid; grid-template-columns: 20px 1fr; gap: 6px; }
+    .checks .y { color: var(--g-green); font-weight: 700; } .checks .n { color: var(--g-red); font-weight: 700; }
+    .checks small { display: block; color: var(--text-muted); font-size: .78rem; }
+    #pOut { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: .78rem; min-height: 190px; }
+    /* Goal, method, learning, repos */
+    .band { max-width: 1120px; margin: 64px auto 0; padding: 0 24px; }
+    .band h2 { font-size: 1.6rem; letter-spacing: -.02em; }
+    .band > p { color: var(--text-secondary); max-width: 70ch; margin: 6px 0 20px; }
+    .objective { background: var(--g-blue-tint); border-radius: 16px; padding: 18px 22px; margin-bottom: 16px; font-weight: 600; }
+    .goal-grid, .method { display: grid; gap: 12px; }
+    .goal-grid { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+    .method { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
+    .box { border: 1px solid var(--border-light); background: var(--bg-surface); border-radius: 14px; padding: 16px 18px; }
+    .box h3 { font-size: .95rem; margin-bottom: 4px; }
+    .box p { font-size: .85rem; color: var(--text-secondary); }
+    .goal-top { display: flex; justify-content: space-between; font-size: .88rem; margin-bottom: 8px; gap: 8px; }
+    .goal-top b { font-variant-numeric: tabular-nums; }
+    .goal-track { height: 8px; background: var(--border-light); border-radius: 6px; overflow: hidden; }
+    .goal-fill { height: 100%; background: var(--g-green); border-radius: 6px; }
+    .learn { display: grid; grid-template-columns: 1.3fr 1fr; gap: 16px; }
+    .chart-wrap { position: relative; height: 320px; }
+    .repo { display: block; text-decoration: none; color: inherit; border: 1px solid var(--border-light); background: var(--bg-surface); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+    .repo:hover { background: var(--bg-elevated); box-shadow: var(--shadow-sm); }
+    .repo b { color: var(--g-blue); font-size: .92rem; }
+    .repo small { display: block; color: var(--text-muted); font-size: .78rem; margin-top: 2px; }
+    .repo img { height: 18px; margin-top: 6px; display: block; }
+    .count-row { max-width: 1120px; margin: 0 auto 12px; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .count-row .result-count { margin: 0; padding: 0; }
+    .btn-sm { padding: 6px 14px; font-size: .8rem; }
+    .card-meta { font-size: .8rem; color: var(--text-muted); margin-bottom: 12px; }
+    .status { display: inline-block; font-weight: 600; font-size: .75rem; padding: 2px 9px; border-radius: 6px; background: var(--bg-page); border: 1px solid var(--border-light); color: var(--g-green); margin-right: 6px; }
+    @media (max-width: 860px) {
+      .about, .dash, .lab { grid-template-columns: 1fr; }
+      .lab-row { grid-template-columns: 1fr; }
+      .learn { grid-template-columns: 1fr; }
+      .hero { grid-template-columns: 1fr; margin-top: 32px; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .nav-links { display: none; }
+      .brand small { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <a href="#projects" class="skip">Skip to projects</a>
+
+  <header>
+    <a href="https://khanriyazi.in/" class="brand" aria-label="Khan Riyazi home">
+      <div class="brand-dots" aria-hidden="true"><span class="dot-blue"></span><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+      <span>Khan Riyazi <small>Data Workspace</small></span>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#command">Dashboard</a>
+      <a href="#services">Services</a>
+      <a href="#check">Health check</a>
+      <a href="#prompt">Prompt Lab</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeBtn" title="Toggle dark mode" aria-label="Toggle dark mode">🌓</button>
+      <button class="icon-btn" id="launcherBtn" title="Quick links" aria-label="Quick links" aria-expanded="false" aria-controls="launcherMenu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM16,6c0,1.1 0.9,2 2,2s2,-0.9 2,-2 -0.9,-2 -2,-2 -2,0.9 -2,2zM12,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2z"/></svg>
+      </button>
+      <a href="https://khanriyazi.in/" class="btn btn-primary">Main portfolio ↗</a>
+
+      <div class="app-launcher-menu" id="launcherMenu">
+        <a href="https://khanriyazi.in/" class="launcher-item"><div class="launcher-icon">🌐</div><span>Portfolio</span></a>
+        <a href="https://github.com/KhanRiyazi" data-link="github" class="launcher-item"><div class="launcher-icon">🐙</div><span>GitHub</span></a>
+        <button class="launcher-item" data-cat="SQL"><div class="launcher-icon">🗄️</div><span>SQL</span></button>
+        <button class="launcher-item" data-cat="Python"><div class="launcher-icon">🐍</div><span>Python</span></button>
+        <button class="launcher-item" data-cat="Dashboard"><div class="launcher-icon">📊</div><span>Dashboards</span></button>
+        <button class="launcher-item" data-cat="Web App"><div class="launcher-icon">🚀</div><span>Live apps</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero: states the goal plainly -->
+    <section class="hero">
+      <div>
+        <div class="hero-badge"><span class="pulse" aria-hidden="true"></span> Open to data analyst roles and freelance projects</div>
+        <h1>Messy data in, clear business answers out.</h1>
+        <p class="lead">I’m a data analyst who cleans your data, finds what matters and presents it in dashboards your team can read at a glance. Start by testing my work on your own CSV, free and private.</p>
+        <div class="hero-cta">
+          <a href="#check" class="btn btn-primary">Try the free data health check</a>
+          <a href="#projects" class="btn btn-outline">See my projects</a>
+        </div>
+        <div class="skill-chips" id="skills" aria-label="Core skills">
+          <span class="chip">SQL</span><span class="chip">Python / Pandas</span><span class="chip">Power BI</span><span class="chip">Excel &amp; Sheets</span><span class="chip">Looker Studio</span><span class="chip">Data cleaning</span>
+        </div>
+      </div>
+
+      <!-- Signature element: a query and its result -->
+      <div class="query-panel" aria-label="Example SQL query and result">
+        <div class="panel-bar">
+          <span class="ctrl">
+            <select id="metric" aria-label="Metric"><option value="revenue">Revenue</option><option value="orders">Orders</option><option value="aov">Avg order value</option></select>
+            <span>by</span>
+            <select id="byDim" aria-label="Group by"><option value="region">Region</option><option value="category">Category</option><option value="month">Month</option></select>
+          </span>
+          <button class="run" id="runBtn" type="button">▶ Run</button>
+        </div>
+        <pre class="sql" id="sqlText"></pre>
+        <div class="result" id="resultBars"></div>
+        <p class="insight" id="insight" aria-live="polite"></p>
+        <p class="panel-note">Synthetic sample data (240 orders). Change an option and the query, chart and insight update.</p>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Portfolio summary">
+      <div class="stat"><b id="statProjects">0</b><span>Projects</span></div>
+      <div class="stat"><b id="statTools">0</b><span>Tools used</span></div>
+      <div class="stat"><b id="statLive">0</b><span>Live demos</span></div>
+      <div class="stat"><b>4</b><span>Work types: SQL, Python, BI, Web</span></div>
+    </section>
+
+    <section class="band" id="command">
+      <h2>My progress dashboard</h2>
+      <p>Live numbers from GitHub and my own learning checklist, from mathematics to data engineering. Tick a topic and the dashboard updates.</p>
+      <div class="kpis">
+        <div class="stat"><b id="kpiJourney">0%</b><span>Journey complete</span></div>
+        <div class="stat"><b id="kpiStage">–</b><span>Current stage</span></div>
+        <div class="stat"><b id="kpiKaggle">–</b><span>Kaggle tier (best)</span></div>
+        <div class="stat"><b id="kpiCI">–</b><span>Latest deploy</span></div>
+        <div class="stat"><b id="kpiRepos">–</b><span>Public repos</span></div>
+        <div class="stat"><b id="kpiProjects">0</b><span>Projects</span></div>
+      </div>
+      <div class="dash">
+        <div class="box"><h3>Mathematics to data engineering</h3><div id="journey"></div></div>
+        <div>
+          <div class="box">
+            <h3>Kaggle progression</h3>
+            <div id="tierBox" style="margin-top:10px"></div>
+            <p id="tierNext" style="margin-top:4px"></p>
+            <p class="panel-note" style="padding:6px 0 0">Self-reported from my Kaggle profile. <a href="https://www.kaggle.com/progression" target="_blank" rel="noopener" style="color:var(--g-blue)">How tiers work</a></p>
+          </div>
+          <div class="box" style="margin-top:12px">
+            <h3>Build and deploy (CI/CD)</h3>
+            <p id="ciStatus" style="margin-top:4px">Checking GitHub Actions…</p>
+            <p class="panel-note" style="padding:6px 0 0">Every push runs checks, then publishes the site to GitHub Pages.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="services">
+      <h2>How I can help your business</h2>
+      <p>Each service ends with something you can use, not just a report.</p>
+      <div class="method">
+        <div class="box"><h3>Data cleaning</h3><p>Fix duplicates, gaps and inconsistent formats.</p><p class="gets"><b>You get:</b> a clean file and a log of every change.</p></div>
+        <div class="box"><h3>Dashboards</h3><p>Turn your numbers into charts people actually read.</p><p class="gets"><b>You get:</b> a dashboard your team can filter.</p></div>
+        <div class="box"><h3>SQL and Python analysis</h3><p>Answer a specific question from your data.</p><p class="gets"><b>You get:</b> findings in plain language plus the code.</p></div>
+        <div class="box"><h3>Reporting automation</h3><p>Stop rebuilding the same weekly report by hand.</p><p class="gets"><b>You get:</b> a Sheet or script that refreshes itself.</p></div>
+      </div>
+      <div class="method" style="margin-top:12px">
+        <div class="box"><h3>1. You share a brief</h3><p>The decision you need to make, the data you have and your deadline.</p></div>
+        <div class="box"><h3>2. I check the data</h3><p>A quick health check, then we agree what is in scope.</p></div>
+        <div class="box"><h3>3. You get answers</h3><p>Clear findings, a recommendation and the files behind them.</p></div>
+      </div>
+    </section>
+
+    <section class="band" id="check">
+      <h2>Free data health check: try it on your own CSV</h2>
+      <p>Drop a CSV to see what I check first on any new dataset: missing values, duplicates, unusual numbers and column types. Your file is read inside your browser and is never uploaded.</p>
+      <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose a CSV file to check">
+        <b>Drop a CSV here</b><span>or click to choose a file (up to 5 MB)</span>
+      </div>
+      <input type="file" id="fileIn" accept=".csv,.tsv,.txt,text/csv" hidden>
+      <div class="hero-cta" style="margin:12px 0 0"><button class="btn btn-outline btn-sm" id="sampleBtn" type="button">No file handy? Try a sample with deliberate flaws</button></div>
+      <div id="checkOut" aria-live="polite" style="margin-top:20px"></div>
+      <div id="checkCta" hidden>
+        <p>Want this done on your real data, with the cleaning and analysis finished for you?</p>
+        <div class="hero-cta" style="margin:0">
+          <a data-link="form" href="#" class="btn btn-primary" hidden>Send a project brief</a>
+          <a data-link="linkedin" href="#" class="btn btn-outline" hidden>Message me on LinkedIn</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="prompt">
+      <h2>Prompt Lab: ask AI for the right practice data</h2>
+      <p>Write what you want from an AI assistant. I score the prompt, fix what is missing and give you an improved version to copy. Nothing you type leaves this page.</p>
+      <div class="lab">
+        <div class="box">
+          <div class="lab-row">
+            <label>Journey stage<select id="pStage"></select></label>
+            <label>My level<select id="pLevel"><option>beginner</option><option>intermediate</option><option>advanced</option></select></label>
+            <label>I want<select id="pWant"><option value="data">Practice dataset</option><option value="exercises">Exercises + solutions</option><option value="kaggle">Kaggle dataset ideas</option><option value="plan">4-week study plan</option></select></label>
+          </div>
+          <label for="pText">Your prompt</label>
+          <textarea id="pText" rows="6" placeholder="Example: give me data to practice SQL"></textarea>
+          <div class="hero-cta" style="margin:12px 0 0">
+            <button class="btn btn-primary btn-sm" id="pCheck" type="button">Check and correct my prompt</button>
+            <button class="btn btn-outline btn-sm" id="pExample" type="button">Try a weak example</button>
+          </div>
+        </div>
+        <div class="box" id="pResult" aria-live="polite"><p>Your score, the checklist and the corrected prompt appear here.</p></div>
+      </div>
+      <h3 style="margin:24px 0 8px">Ready-made prompts for each stage</h3>
+      <div class="method" id="pLibrary"></div>
+    </section>
+
+    <section class="band" id="about">
+      <h2>Who is behind the data</h2>
+      <p>Most analysts can calculate. My edge is that I can also design: charts and dashboards that a manager reads in ten seconds.</p>
+      <div class="about">
+        <div class="box profile">
+          <img src="https://avatars.githubusercontent.com/u/155373555?s=160&v=4" alt="Profile photo of Khan Riyazi" width="80" height="80" loading="lazy">
+          <div>
+            <h3>Khan Riyazi (Rizwan Ali)</h3>
+            <p>Freelancer in India. Canva graphic designer and Python developer, building toward a data analyst career.</p>
+            <div class="gh-stats"><span><b id="ghRepos">–</b> repositories</span><span><b id="ghFollowers">–</b> followers</span></div>
+          </div>
+        </div>
+        <div class="strengths">
+          <div class="box"><h3>Visual design</h3><p>Years of graphic design in Canva, so charts have clear hierarchy and colour.</p></div>
+          <div class="box"><h3>Python</h3><p>Scripting and automation, now applied to cleaning and analysing data.</p></div>
+          <div class="box"><h3>Analysis</h3><p>SQL, spreadsheets and BI tools, practised through the projects below.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="goal">
+      <h2>My goal, and how you can verify it</h2>
+      <p>I don’t ask you to take my word for it. Each target below is measurable, and each project follows the same method, so you can check my work.</p>
+      <div class="objective" id="objectiveText"></div>
+      <div class="goal-grid" id="goalGrid"></div>
+    </section>
+
+    <section class="band" id="method">
+      <h2>How I analyse data</h2>
+      <p>Every project answers a business question with a repeatable process. If a number appears on this page, you can trace it back to a dataset and a repo.</p>
+      <div class="method">
+        <div class="box"><h3>1. Question</h3><p>Define the decision the data should support.</p></div>
+        <div class="box"><h3>2. Source</h3><p>Name the dataset, its origin and its limits.</p></div>
+        <div class="box"><h3>3. Clean</h3><p>Handle nulls, duplicates and outliers; log each fix.</p></div>
+        <div class="box"><h3>4. Analyse</h3><p>SQL and Python to test the question, not just describe data.</p></div>
+        <div class="box"><h3>5. Insight</h3><p>State the finding in one plain sentence with a number.</p></div>
+        <div class="box"><h3>6. Action</h3><p>Recommend what the business should do next.</p></div>
+      </div>
+    </section>
+
+    <div class="section-title">
+      <h2>Projects</h2>
+      <p>Filter by skill, or search by tool, dataset or business question.</p>
+    </div>
+
+    <section class="workspace-controls" id="projects">
+      <div class="search-box">
+        <span class="search-icon" aria-hidden="true">🔍</span>
+        <input type="search" id="searchInput" placeholder="Search projects, SQL, Python, Power BI" aria-label="Search projects" />
+        <span class="kbd" aria-hidden="true">/</span>
+      </div>
+      <div class="filter-pills" id="filterPills" role="group" aria-label="Filter by category">
+        <button class="pill active" data-category="All">All</button>
+        <button class="pill" data-category="Dashboard">BI dashboards</button>
+        <button class="pill" data-category="Python">Python &amp; EDA</button>
+        <button class="pill" data-category="SQL">SQL analysis</button>
+        <button class="pill" data-category="Web App">Live web apps</button>
+      </div>
+    </section>
+
+    <div class="count-row">
+      <p class="result-count" aria-live="polite"><span id="resultCount"></span> <span id="syncNote"></span></p>
+      <button class="btn btn-outline btn-sm" id="exportBtn" type="button">Download Google Sheets template (CSV)</button>
+    </div>
+    <div class="grid-container" id="projectGrid"></div>
+
+    <section class="band" id="stack">
+      <h2>My analysis toolkit, end to end</h2>
+      <p>One workflow from raw data to a decision: practise on Kaggle, prepare in Google Sheets, visualise in Looker Studio, report in Google Docs, and version everything on GitHub.</p>
+      <div class="method">
+        <div class="box"><span class="stack-tag">Kaggle</span><h3>Find and practise</h3><p>Real datasets, Learn courses and public notebooks.</p></div>
+        <div class="box"><span class="stack-tag">Google Sheets</span><h3>Clean and check</h3><p>Pivot tables and QUERY formulas for fast checks before code.</p></div>
+        <div class="box"><span class="stack-tag">Looker Studio</span><h3>Visualise</h3><p>Shareable dashboards connected to a Sheet or CSV.</p></div>
+        <div class="box"><span class="stack-tag">Docs &amp; Slides</span><h3>Report</h3><p>Plain-language write-ups for non-technical readers.</p></div>
+        <div class="box"><span class="stack-tag">Forms &amp; Calendar</span><h3>Intake and booking</h3><p>Collect a project brief and schedule a call.</p></div>
+        <div class="box"><span class="stack-tag">GitHub</span><h3>Version</h3><p>SQL and notebooks tracked with commit history.</p></div>
+      </div>
+    </section>
+
+    <section class="band" id="kaggle">
+      <h2>Practising in public on Kaggle</h2>
+      <p>Kaggle gives me real datasets and a public place to publish notebooks. The Learn courses below are my plan, and finished notebooks link from the project cards.</p>
+      <div class="learn">
+        <div id="courseList"></div>
+        <div class="box">
+          <h3>My Kaggle routine</h3>
+          <p>1. Pick a dataset with a clear business question.<br>2. Clean and explore it in a notebook.<br>3. Publish the notebook with a one-sentence finding.<br>4. Link it on a project card above.</p>
+          <div class="hero-cta" style="margin:14px 0 0">
+            <a data-link="kaggle" href="#" class="btn btn-primary btn-sm" hidden>View my Kaggle profile</a>
+            <a href="https://www.kaggle.com/datasets" target="_blank" rel="noopener" class="btn btn-outline btn-sm">Browse datasets</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="dashboard" hidden>
+      <h2>Live dashboard</h2>
+      <p>An interactive Looker Studio report built on a Google Sheet. Use its filters to explore the data yourself.</p>
+      <div id="lookerBox"></div>
+    </section>
+
+    <section class="band" id="learning">
+      <h2>Continuous learning, in the open</h2>
+      <p>Skill levels are self-assessed against a target I’m working toward. The featured repositories beside it load live from GitHub, so you can open the real code and see recent activity.</p>
+      <div class="learn">
+        <div class="box">
+          <div class="chart-wrap"><canvas id="skillChart" aria-label="Skill level versus target"></canvas></div>
+          <div id="skillFallback"></div>
+        </div>
+        <div>
+          <div id="repoList"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="testimonials" hidden>
+      <h2>What clients say</h2>
+      <div class="method" id="quoteList"></div>
+    </section>
+
+    <section class="band" id="faq">
+      <h2>Questions clients ask</h2>
+      <div style="display:grid;gap:10px;margin-top:16px">
+        <details class="box"><summary>What do I need to give you?</summary><p>A short brief: the decision you want to make, the data you have (even if it is messy) and your deadline.</p></details>
+        <details class="box"><summary>Is my data safe?</summary><p>The health check on this page runs in your browser and never uploads your file. For real projects we agree how data is shared and stored before I open it.</p></details>
+        <details class="box"><summary>How do I know the numbers are right?</summary><p>Every project records its source, cleaning steps and queries so you can re-run them. My GitHub shows the work and its history.</p></details>
+        <details class="box"><summary>Which tools do you use?</summary><p>SQL, Python, Google Sheets, Looker Studio, Power BI and Excel, chosen to match what your team already uses.</p></details>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="contact-card">
+        <div>
+          <h2>Have a data problem to solve?</h2>
+          <p>Send me a dataset question or a role description on LinkedIn.</p>
+        </div>
+        <div class="hero-cta" style="margin:0"><a data-link="linkedin" href="#" class="btn btn-primary" hidden>Message on LinkedIn</a><a data-link="hub" href="#" class="btn btn-outline" hidden>All my links</a><a data-link="booking" href="#" class="btn btn-outline" hidden>Book a 15-minute call</a><a data-link="form" href="#" class="btn btn-outline" hidden>Send a project brief</a><a data-link="resume" href="#" class="btn btn-outline" hidden>Resume</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p style="margin-bottom:8px"><a data-link="github" href="#" hidden>GitHub</a> &nbsp; <a data-link="linkedin" href="#" hidden>LinkedIn</a> &nbsp; <a data-link="site" href="https://khanriyazi.in/">Portfolio</a> &nbsp; <a data-link="hub" href="#" hidden>Link hub</a> &nbsp; <a data-link="kaggle" href="#" hidden>Kaggle</a></p>
+    <p>Built as the project hub for <a href="https://khanriyazi.in/">khanriyazi.in</a> · Data analyst portfolio</p>
+  </footer>
+
+  <dialog id="caseDialog" aria-labelledby="caseTitle">
+    <div id="caseBody"></div>
+    <div class="hero-cta" style="margin:18px 0 0"><button class="btn btn-outline btn-sm" id="caseClose" type="button">Close</button></div>
+  </dialog>
+  <a href="#contact" class="sticky-cta btn btn-primary">Start a project</a>
+
+  <script>
+    // ======================================================================
+    // 1. EDIT HERE: your real projects.
+    //    - icon: emoji OR an image URL / path
+    //    - result: one measurable outcome (replace the placeholders)
+    //    - Leave liveUrl or githubUrl as "" to hide that button
+    // ======================================================================
+    let projectsData = [
+      {
+        title: "Main Portfolio Website", category: "Web App", icon: "🌐", iconBg: "#e8f0fe",
+        description: "My personal site with resume, background, skills and contact details.",
+        result: "Start here for my full profile and resume.",
+        tags: ["HTML/CSS", "JavaScript"],
+        status: "Live",
+        liveUrl: "https://khanriyazi.in/", githubUrl: ""
+      },
+      {
+        title: "growthChart", category: "Dashboard", icon: "📈", iconBg: "#e6f4ea",
+        description: "A growth chart built in HTML and published on my GitHub. Open the repo to read the code.",
+        result: "Shows data visualisation practice in code. (add the question it answers)",
+        tags: ["HTML", "Data visualisation"],
+        status: "Repo", dataset: "Add dataset name and source link",
+        liveUrl: "", githubUrl: "https://github.com/KhanRiyazi/growthChart"
+      },
+      {
+        title: "Graphic-Designer", category: "Web App", icon: "🎨", iconBg: "#fce8e6",
+        description: "My graphic design work published as an HTML page. It is the design side of my dashboards.",
+        result: "Evidence of visual design skill behind every chart I build.",
+        tags: ["HTML", "Graphic design", "Canva"],
+        status: "Repo",
+        liveUrl: "", githubUrl: "https://github.com/KhanRiyazi/Graphic-Designer"
+      },
+      {
+        title: "Sales & Revenue BI Dashboard", category: "Dashboard", icon: "📊", iconBg: "#fce8e6",
+        description: "Interactive KPI tracking for regional sales, profit margins and year-over-year growth.",
+        result: "Question answered: which regions drive profit? (add your finding)",
+        tags: ["Power BI", "Excel", "DAX"],
+        status: "Draft", dataset: "Add dataset name and source link",
+        liveUrl: "https://khanriyazi.in/", githubUrl: "https://github.com/KhanRiyazi?tab=repositories"
+      },
+      {
+        title: "E-Commerce Customer Churn Analysis", category: "Python", icon: "🐍", iconBg: "#fef7e0",
+        description: "Data cleaning, feature engineering and correlation analysis on 10,000+ customer records.",
+        result: "Finding: which customer traits predict churn? (add your finding)",
+        tags: ["Python", "Pandas", "Matplotlib"],
+        status: "Draft", dataset: "Add dataset name and source link",
+        liveUrl: "https://khanriyazi.in/", githubUrl: "https://github.com/KhanRiyazi?tab=repositories"
+      },
+      {
+        title: "Supply Chain SQL Case Study", category: "SQL", icon: "🗄️", iconBg: "#e6f4ea",
+        description: "CTEs, window functions and inventory bottleneck queries on relational warehouse tables.",
+        result: "Finding: where does stock get stuck? (add your finding)",
+        tags: ["PostgreSQL", "Window Functions", "Joins"],
+        status: "Draft", dataset: "Add dataset name and source link",
+        liveUrl: "", githubUrl: "https://github.com/KhanRiyazi?tab=repositories"
+      },
+      {
+        title: "Browser Data Explorer", category: "Web App", icon: "🚀", iconBg: "#e8f0fe",
+        description: "Lightweight tool on GitHub Pages to filter and chart any CSV file in the browser.",
+        result: "No install needed: upload a CSV and see charts instantly.",
+        tags: ["GitHub Pages", "Vanilla JS", "Chart.js"],
+        status: "Live", dataset: "User-uploaded CSV",
+        liveUrl: "https://khanriyazi.in/", githubUrl: "https://github.com/KhanRiyazi?tab=repositories"
+      },
+      {
+        title: "Financial Expense Tracker", category: "Dashboard", icon: "💹", iconBg: "#e6f4ea",
+        description: "Automated monthly budget variance model with slicers and pivot summaries.",
+        result: "Shows budget vs. actual spend at a glance. (add your finding)",
+        tags: ["Google Sheets", "Looker Studio", "Pivot Tables"],
+        status: "Draft", dataset: "Add dataset name and source link",
+        liveUrl: "https://khanriyazi.in/", githubUrl: "https://github.com/KhanRiyazi?tab=repositories"
+      }
+    ];
+
+    // Synthetic dataset for the live analysis demo (seeded, so results are stable)
+    function rng(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+    const R = rng(42);
+    const REGIONS = ["North", "South", "East", "West"], CATS = ["Electronics", "Apparel", "Home", "Grocery"];
+    const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const sales = Array.from({ length: 240 }, () => {
+      const m = Math.floor(R() * 12), orders = 1 + Math.floor(R() * 9), price = 20 + Math.floor(R() * 180);
+      return { region: REGIONS[Math.floor(R() * 4)], category: CATS[Math.floor(R() * 4)], month: MONTHS[m], monthIdx: m, orders, revenue: orders * price };
+    });
+
+    // ======================================================================
+    // 2. HELPERS
+    // ======================================================================
+    const $ = (id) => document.getElementById(id);
+    const grid = $("projectGrid"), searchInput = $("searchInput"), countEl = $("resultCount");
+    const pills = document.querySelectorAll(".pill");
+    let currentCategory = "All";
+
+    const esc = (s) => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    const isImg = (v) => /^(https?:\/\/|\/|\.\/)/.test(v);
+    const renderIcon = (v) => isImg(v) ? `<img src="${esc(v)}" alt="" loading="lazy" />` : esc(v);
+
+    // ======================================================================
+    // 3. RENDER
+    // ======================================================================
+    function renderProjects() {
+      const q = searchInput.value.toLowerCase().trim();
+      const list = projectsData.filter(p => {
+        const inCat = currentCategory === "All" || p.category === currentCategory;
+        const inText = !q || [p.title, p.description, p.result, p.category, ...p.tags].some(t => t.toLowerCase().includes(q));
+        return inCat && inText;
+      });
+
+      countEl.textContent = `${list.length} of ${projectsData.length} projects`;
+
+      if (!list.length) {
+        grid.innerHTML = `<p class="empty">No projects match “${esc(searchInput.value)}”. Clear the search or pick All.</p>`;
+        return;
+      }
+
+      grid.innerHTML = list.map(p => `
+        <article class="project-card">
+          <div>
+            <div class="card-header">
+              <div class="app-icon" style="background:${esc(p.iconBg)}">${renderIcon(p.icon)}</div>
+              <div class="card-title-group">
+                <div class="card-category">${esc(p.category)}</div>
+                <h3>${esc(p.title)}</h3>
+              </div>
+            </div>
+            <p class="card-desc">${esc(p.description)}</p>
+            <p class="card-impact">${esc(p.result)}</p>
+            <p class="card-meta">${p.status ? `<span class="status">${esc(p.status)}</span>` : ""}${p.dataset ? `Data: ${esc(p.dataset)}` : ""}</p>
+            <div class="tech-tags">${p.tags.map(t => `<span class="tag">${esc(t)}</span>`).join("")}</div>
+          </div>
+          <div class="card-links">
+            <button type="button" class="card-link link-code" data-case="${projectsData.indexOf(p)}">Case study</button>
+            ${p.liveUrl ? `<a href="${esc(p.liveUrl)}" target="_blank" rel="noopener" class="card-link link-live">Live demo ↗</a>` : ""}
+            ${p.githubUrl ? `<a href="${esc(p.githubUrl)}" target="_blank" rel="noopener" class="card-link link-code">GitHub repo</a>` : ""}
+            ${p.kaggleUrl ? `<a href="${esc(p.kaggleUrl)}" target="_blank" rel="noopener" class="card-link link-code">Kaggle</a>` : ""}
+          </div>
+        </article>`).join("");
+    }
+
+    function setCategory(cat) {
+      currentCategory = cat;
+      pills.forEach(b => {
+        const on = b.dataset.category === cat;
+        b.classList.toggle("active", on);
+        b.setAttribute("aria-pressed", on);
+      });
+      renderProjects();
+    }
+
+    // Stats computed from the data, so they never go out of date
+    function renderStats() {
+      $("statProjects").textContent = projectsData.length;
+      $("kpiProjects").textContent = projectsData.length;
+      $("statTools").textContent = new Set(projectsData.flatMap(p => p.tags)).size;
+      $("statLive").textContent = projectsData.filter(p => p.liveUrl).length;
+    }
+
+    // Live analysis: query text, chart and plain-language insight from the same data
+    function runQuery() {
+      const dim = $("byDim").value, met = $("metric").value;
+      const groups = {};
+      sales.forEach(r => {
+        const g = groups[r[dim]] || (groups[r[dim]] = { rev: 0, ord: 0, i: r.monthIdx });
+        g.rev += r.revenue; g.ord += r.orders;
+      });
+      const val = g => met === "revenue" ? g.rev : met === "orders" ? g.ord : g.rev / g.ord;
+      const fmt = v => met === "orders" ? v.toLocaleString() : met === "revenue" ? "$" + (v / 1000).toFixed(1) + "k" : "$" + v.toFixed(0);
+      const rows = Object.entries(groups).map(([label, g]) => ({ label, value: val(g), i: g.i }));
+      const ranked = [...rows].sort((a, b) => b.value - a.value);
+      dim === "month" ? rows.sort((a, b) => a.i - b.i) : rows.sort((a, b) => b.value - a.value);
+      const max = ranked[0].value, colors = ["#1a73e8", "#34a853", "#fbbc04", "#ea4335"];
+
+      const alias = met === "aov" ? "avg_order_value" : "total_" + met;
+      const expr = met === "revenue" ? '<span class="f">SUM</span>(revenue)' : met === "orders" ? '<span class="f">SUM</span>(orders)' : '<span class="f">SUM</span>(revenue) / <span class="f">SUM</span>(orders)';
+      $("sqlText").innerHTML = `<span class="k">SELECT</span> ${dim},\n       ${expr} <span class="k">AS</span> ${alias}\n<span class="k">FROM</span>   sales\n<span class="k">GROUP BY</span> ${dim}\n<span class="k">ORDER BY</span> ${dim === "month" ? "month_number" : alias + ' <span class="k">DESC</span>'};`;
+
+      $("resultBars").innerHTML = rows.map((r, n) => `
+        <div class="bar-row">
+          <span>${esc(r.label)}</span>
+          <div class="bar-track"><div class="bar-fill" style="background:${dim === "month" ? colors[0] : colors[n % 4]}" data-w="${(r.value / max * 100).toFixed(0)}"></div></div>
+          <span>${fmt(r.value)}</span>
+        </div>`).join("");
+
+      const top = ranked[0], low = ranked[ranked.length - 1];
+      let msg = `${top.label} leads at ${fmt(top.value)}, ${(top.value / low.value).toFixed(1)}x ${low.label}, the lowest.`;
+      if (met !== "aov") msg += ` It makes up ${Math.round(top.value / ranked.reduce((t, r) => t + r.value, 0) * 100)}% of the total.`;
+      $("insight").textContent = msg;
+
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        document.querySelectorAll("#resultBars .bar-fill").forEach(el => el.style.width = el.dataset.w + "%");
+      }));
+    }
+
+    // ======================================================================
+    // 4. INTERACTIVITY
+    // ======================================================================
+    pills.forEach(b => b.addEventListener("click", () => setCategory(b.dataset.category)));
+    searchInput.addEventListener("input", renderProjects);
+    $("runBtn").addEventListener("click", runQuery);
+    $("byDim").addEventListener("change", runQuery);
+    $("metric").addEventListener("change", runQuery);
+
+    // Launcher
+    const launcherBtn = $("launcherBtn"), launcherMenu = $("launcherMenu");
+    const toggleMenu = (open) => {
+      launcherMenu.classList.toggle("active", open);
+      launcherBtn.setAttribute("aria-expanded", open);
+    };
+    launcherBtn.addEventListener("click", (e) => { e.stopPropagation(); toggleMenu(!launcherMenu.classList.contains("active")); });
+    document.addEventListener("click", (e) => { if (!launcherMenu.contains(e.target)) toggleMenu(false); });
+    launcherMenu.querySelectorAll("[data-cat]").forEach(b => b.addEventListener("click", () => {
+      setCategory(b.dataset.cat); toggleMenu(false); $("projects").scrollIntoView();
+    }));
+
+    // Keyboard: "/" focuses search, Esc closes launcher
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "/" && document.activeElement !== searchInput) { e.preventDefault(); searchInput.focus(); }
+      if (e.key === "Escape") { toggleMenu(false); }
+    });
+
+    // Theme toggle (kept in memory only)
+    $("themeBtn").addEventListener("click", () => {
+      const root = document.documentElement;
+      const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+      root.dataset.theme = dark ? "light" : "dark";
+      renderChart();
+    });
+
+    // ======================================================================
+    // 5. CONFIG: official URLs, goals and tracking (EDIT THESE)
+    // ======================================================================
+    const CONFIG = {
+      site: "https://khanriyazi.in/",
+      githubUser: "KhanRiyazi",
+      linkedin: "https://www.linkedin.com/in/rizwan-ali-389660156/",
+      hub: "https://khanriyazi.github.io/Link-Project/",
+      email: "",               // you@example.com (optional)
+      featuredRepos: ["growthChart", "Graphic-Designer", "PRACTICE"],  // shown first; empty = latest pushed
+      ciWorkflow: "ci.yml",    // workflow file in .github/workflows
+      kaggle: "",              // https://www.kaggle.com/your-username
+      siteRepo: "Link-Project",  // repository that holds this page and .github/workflows/ci.yml
+      kaggleTiers: { Competitions: "Novice", Datasets: "Novice", Notebooks: "Novice", Discussion: "Novice" },  // copy from your Kaggle profile
+      // Google Sheets as your CMS: File > Share > Publish to web > choose the tab > CSV, paste the link
+      sheetProjectsCsv: "",    // tab "Projects": use the Download template button for columns
+      sheetSkillsCsv: "",      // tab "Skills": columns name, now, target
+      lookerEmbedUrl: "",      // Looker Studio: File > Embed report > enable embedding > copy URL
+      resume: "",              // Google Doc: https://docs.google.com/document/d/ID/export?format=pdf
+      form: "",                // Google Form link for project briefs
+      booking: "",             // Google Calendar appointment schedule link
+      ga4Id: "",               // Google Analytics 4 id, e.g. G-XXXXXXXXXX
+      testimonials: [],        // real client quotes only: [{ quote: "...", name: "...", role: "..." }]
+      focus: "business analytics",
+      targetDate: ""           // e.g. "January 2027"
+    };
+
+    // Self-assessed levels (0-100). Update honestly as you learn.
+    let skills = [
+      { name: "SQL", now: 0, target: 90 },
+      { name: "Python / Pandas", now: 0, target: 85 },
+      { name: "Power BI", now: 0, target: 85 },
+      { name: "Excel & Sheets", now: 0, target: 90 },
+      { name: "Statistics", now: 0, target: 75 },
+      { name: "Data storytelling", now: 0, target: 80 }
+    ];
+
+    // Measurable goals. done is auto-counted where possible.
+    const kaggleCourses = [   // set done: true as you finish each Kaggle Learn course
+      { name: "Python", slug: "python", done: false },
+      { name: "Pandas", slug: "pandas", done: false },
+      { name: "Intro to SQL", slug: "intro-to-sql", done: false },
+      { name: "Data Visualization", slug: "data-visualization", done: false },
+      { name: "Data Cleaning", slug: "data-cleaning", done: false }
+    ];
+    const getGoals = () => [
+      { label: "Projects published", done: projectsData.length, total: 8 },
+      { label: "Dashboards from real datasets", done: projectsData.filter(p => p.category === "Dashboard").length, total: 4 },
+      { label: "Kaggle Learn courses completed", done: kaggleCourses.filter(c => c.done).length, total: kaggleCourses.length },
+      { label: "SQL practice problems solved", done: 0, total: 100 }
+    ];
+
+    // Analytics hook: works with Google Tag Manager (dataLayer) or Plausible if you add their snippet to <head>.
+    function track(name, params) {
+      try {
+        if (window.gtag) window.gtag("event", name, params);
+        else if (window.dataLayer) window.dataLayer.push({ event: name, ...params });
+        if (window.plausible) window.plausible(name, { props: params });
+      } catch (e) {}
+    }
+    document.addEventListener("click", (e) => {
+      const a = e.target.closest("a[href]");
+      if (a) track("link_click", { label: a.textContent.trim().slice(0, 60), url: a.href });
+    });
+
+    // Official links from CONFIG
+    document.querySelectorAll("[data-link]").forEach(a => {
+      const k = a.dataset.link;
+      const href = k === "email" ? (CONFIG.email ? "mailto:" + CONFIG.email : CONFIG.site) : CONFIG[k];
+      if (href) { a.href = href; a.hidden = false; }
+    });
+
+    function renderGoals() {
+      $("objectiveText").textContent = "Objective: an entry-level data analyst role in " + CONFIG.focus + (CONFIG.targetDate ? ", starting " + CONFIG.targetDate : "") + ".";
+      $("goalGrid").innerHTML = getGoals().map(g => {
+        const pct = Math.min(100, Math.round(g.done / g.total * 100));
+        return `<div class="box"><div class="goal-top"><span>${esc(g.label)}</span><b>${g.done} / ${g.total}</b></div><div class="goal-track"><div class="goal-fill" style="width:${pct}%"></div></div></div>`;
+      }).join("");
+    }
+
+    let skillChart;
+    function renderChart() {
+      const cv = $("skillChart");
+      if (!cv) return;
+      if (!window.Chart) {
+        cv.parentElement.hidden = true;
+        $("skillFallback").innerHTML = skills.map(s => `<div class="bar-row"><span>${esc(s.name)}</span><div class="bar-track"><div class="bar-fill" style="width:${s.now}%;background:#1a73e8"></div></div><span>${s.now}%</span></div>`).join("");
+        return;
+      }
+      const cs = getComputedStyle(document.documentElement);
+      const txt = cs.getPropertyValue("--text-secondary").trim();
+      const line = cs.getPropertyValue("--border-light").trim();
+      const blue = cs.getPropertyValue("--g-blue").trim();
+      if (skillChart) skillChart.destroy();
+      skillChart = new Chart(cv, {
+        type: "bar",
+        data: {
+          labels: skills.map(s => s.name),
+          datasets: [
+            { label: "Current", data: skills.map(s => s.now), backgroundColor: blue, borderRadius: 6 },
+            { label: "Target", data: skills.map(s => s.target), backgroundColor: line, borderRadius: 6 }
+          ]
+        },
+        options: {
+          indexAxis: "y", responsive: true, maintainAspectRatio: false,
+          scales: { x: { max: 100, ticks: { color: txt }, grid: { color: line } }, y: { ticks: { color: txt }, grid: { display: false } } },
+          plugins: { legend: { labels: { color: txt } } }
+        }
+      });
+    }
+
+    // Live repositories + CI status badge from GitHub
+    async function loadRepos() {
+      const box = $("repoList"), u = encodeURIComponent(CONFIG.githubUser);
+      if (!CONFIG.githubUser) { box.innerHTML = '<p class="empty">Add your GitHub username in CONFIG to list live repositories here.</p>'; return; }
+      try {
+        let repos;
+        if (CONFIG.featuredRepos && CONFIG.featuredRepos.length) {
+          const res = await Promise.allSettled(CONFIG.featuredRepos.map(n =>
+            fetch(`https://api.github.com/repos/${u}/${encodeURIComponent(n)}`).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })));
+          repos = res.filter(x => x.status === "fulfilled").map(x => x.value);
+        } else {
+          const r = await fetch(`https://api.github.com/users/${u}/repos?sort=pushed&per_page=6`);
+          if (!r.ok) throw new Error(r.status);
+          repos = (await r.json()).filter(x => !x.fork);
+        }
+        box.innerHTML = repos.length ? repos.map(x => `
+          <a class="repo" href="${esc(x.html_url)}" target="_blank" rel="noopener">
+            <b>${esc(x.name)}</b>
+            <small>${esc(x.description || "Open the repo to see the code")}</small>
+            <small>${esc(x.language || "n/a")} · ${x.stargazers_count} stars · updated ${new Date(x.pushed_at).toLocaleDateString(undefined, { month: "short", year: "numeric" })}</small>
+            <img src="https://github.com/${u}/${encodeURIComponent(x.name)}/actions/workflows/${esc(CONFIG.ciWorkflow)}/badge.svg" alt="" onerror="this.remove()">
+          </a>`).join("") : '<p class="empty">No repositories to show yet.</p>';
+      } catch (e) {
+        box.innerHTML = '<p class="empty">GitHub could not be reached right now. Reload to try again.</p>';
+      }
+    }
+
+    async function loadProfile() {
+      try {
+        const r = await fetch("https://api.github.com/users/" + encodeURIComponent(CONFIG.githubUser));
+        if (!r.ok) throw new Error(r.status);
+        const d = await r.json();
+        $("ghRepos").textContent = d.public_repos;
+        $("ghFollowers").textContent = d.followers;
+        $("kpiRepos").textContent = d.public_repos;
+      } catch (e) { /* keep the dashes */ }
+    }
+
+    // Highlight the nav link for the section in view
+    const spyLinks = [...document.querySelectorAll(".nav-links a")];
+    const spy = new IntersectionObserver(es => es.forEach(en => {
+      if (en.isIntersecting) spyLinks.forEach(a => a.toggleAttribute("aria-current", a.hash === "#" + en.target.id));
+    }), { rootMargin: "-40% 0px -55% 0px" });
+    spyLinks.forEach(a => { const t = a.hash && document.querySelector(a.hash); if (t) spy.observe(t); });
+
+    function exportCSV() {
+      const rows = [["title", "category", "icon", "description", "result", "tags", "status", "dataset", "live_url", "github_url", "kaggle_url", "question", "action"]]
+        .concat(projectsData.map(p => [p.title, p.category, p.icon, p.description, p.result, p.tags.join("; "), p.status || "", p.dataset || "", p.liveUrl || "", p.githubUrl || "", p.kaggleUrl || "", p.question || "", p.action || ""]));
+      const csv = rows.map(r => r.map(c => '"' + String(c).replace(/"/g, '""') + '"').join(",")).join("\n");
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
+      a.download = "projects-template.csv";
+      a.click();
+      URL.revokeObjectURL(a.href);
+      track("export_csv", {});
+    }
+    $("exportBtn").addEventListener("click", exportCSV);
+
+    // ======================================================================
+    // 6. GOOGLE WORKSPACE + KAGGLE INTEGRATIONS
+    // ======================================================================
+    const safeUrl = (u) => /^https?:\/\//i.test(u || "") ? u : "";
+
+    function parseCSV(t, d = ",") {
+      const rows = []; let row = [], f = "", q = false;
+      for (let i = 0; i < t.length; i++) {
+        const c = t[i];
+        if (q) { if (c === '"') { if (t[i + 1] === '"') { f += '"'; i++; } else q = false; } else f += c; }
+        else if (c === '"') q = true;
+        else if (c === d) { row.push(f); f = ""; }
+        else if (c === "\n" || c === "\r") { if (c === "\r" && t[i + 1] === "\n") i++; row.push(f); rows.push(row); row = []; f = ""; }
+        else f += c;
+      }
+      if (f !== "" || row.length) { row.push(f); rows.push(row); }
+      return rows.filter(r => r.some(x => x.trim()));
+    }
+    function csvToObjects(t) {
+      const [h, ...rs] = parseCSV(t);
+      const keys = h.map(x => x.trim().toLowerCase().replace(/\s+/g, "_"));
+      return rs.map(r => Object.fromEntries(keys.map((k, i) => [k, (r[i] || "").trim()])));
+    }
+
+    // Edit the Google Sheet and this page updates. No code change needed.
+    async function loadSheets() {
+      let changed = false;
+      const note = $("syncNote");
+      try {
+        if (CONFIG.sheetProjectsCsv) {
+          const r = await fetch(CONFIG.sheetProjectsCsv);
+          if (!r.ok) throw new Error(r.status);
+          const rows = csvToObjects(await r.text()).filter(x => x.title);
+          if (rows.length) {
+            const cats = ["Dashboard", "Python", "SQL", "Web App"];
+            projectsData = rows.map(x => ({
+              title: x.title, category: cats.includes(x.category) ? x.category : "Dashboard",
+              icon: x.icon || "📁", iconBg: "#e8f0fe", description: x.description || "", result: x.result || "",
+              tags: (x.tags || "").split(/[;,]/).map(t => t.trim()).filter(Boolean),
+              status: x.status || "", dataset: x.dataset || "", question: x.question || "", action: x.action || "",
+              liveUrl: safeUrl(x.live_url), githubUrl: safeUrl(x.github_url), kaggleUrl: safeUrl(x.kaggle_url)
+            }));
+            changed = true;
+            note.textContent = "· Synced from Google Sheets";
+          }
+        }
+        if (CONFIG.sheetSkillsCsv) {
+          const r = await fetch(CONFIG.sheetSkillsCsv);
+          if (!r.ok) throw new Error(r.status);
+          const rows = csvToObjects(await r.text()).filter(x => x.name);
+          if (rows.length) {
+            skills = rows.map(x => ({ name: x.name, now: Math.min(100, +x.now || 0), target: Math.min(100, +x.target || 0) }));
+            changed = true;
+          }
+        }
+      } catch (e) {
+        note.textContent = "· Google Sheet unavailable, showing built-in data";
+      }
+      return changed;
+    }
+
+    function renderKaggle() {
+      $("courseList").innerHTML = kaggleCourses.map(c =>
+        `<a class="course" href="https://www.kaggle.com/learn/${esc(c.slug)}" target="_blank" rel="noopener"><span>${esc(c.name)}</span><span class="${c.done ? "done" : "todo"}">${c.done ? "Completed" : "In my plan"}</span></a>`).join("");
+    }
+
+    function renderLooker() {
+      const u = CONFIG.lookerEmbedUrl;
+      if (!/^https:\/\/lookerstudio\.google\.com\//.test(u || "")) return;   // section stays hidden
+      $("lookerBox").innerHTML = `<div class="iframe-wrap"><iframe src="${esc(u)}" title="Live Looker Studio dashboard" loading="lazy" allowfullscreen sandbox="allow-scripts allow-same-origin allow-popups"></iframe></div>`;
+      $("dashboard").hidden = false;
+    }
+
+    function initGA() {
+      const id = CONFIG.ga4Id;
+      if (!/^G-[A-Z0-9]+$/.test(id || "")) return;
+      const sc = document.createElement("script");
+      sc.async = true; sc.src = "https://www.googletagmanager.com/gtag/js?id=" + id;
+      document.head.appendChild(sc);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      window.gtag("js", new Date()); window.gtag("config", id);
+    }
+
+    // ======================================================================
+    // 7. CLIENT FEATURES: data health check, case studies, testimonials
+    // ======================================================================
+    const MAX_BYTES = 5 * 1024 * 1024;
+    const nf = x => Math.abs(x) >= 1000 ? Math.round(x).toLocaleString() : String(+x.toFixed(2));
+    function detectDelim(t) {
+      const line = t.split(/\r?\n/, 1)[0], c = { ",": 0, "\t": 0, ";": 0 };
+      for (const ch of line) if (ch in c) c[ch]++;
+      return Object.keys(c).sort((a, b) => c[b] - c[a])[0];
+    }
+    function quant(a, q) { const i = (a.length - 1) * q, lo = Math.floor(i), hi = Math.ceil(i); return a[lo] + (a[hi] - a[lo]) * (i - lo); }
+
+    function profile(rows) {
+      const head = rows[0].map((h, i) => h.trim() || "column_" + (i + 1));
+      const data = rows.slice(1, 50001);
+      const seen = new Set(); let dup = 0;
+      data.forEach(r => { const k = r.join("\u0001"); seen.has(k) ? dup++ : seen.add(k); });
+      const cols = head.map((name, i) => {
+        const vals = data.map(r => r[i] === undefined ? "" : String(r[i]).trim());
+        const filled = vals.filter(v => v !== "");
+        const nums = filled.map(v => Number(v.replace(/[$€£,%\s]/g, "")));
+        const good = nums.filter(n => !isNaN(n));
+        const isNum = filled.length > 0 && good.length / filled.length >= 0.9;
+        const c = { name, total: vals.length, missing: vals.length - filled.length, unique: new Set(filled).size, isNum };
+        if (isNum) {
+          const n = good.sort((a, b) => a - b);
+          const q1 = quant(n, .25), q3 = quant(n, .75), iqr = q3 - q1;
+          Object.assign(c, { min: n[0], max: n[n.length - 1], median: quant(n, .5), outliers: iqr > 0 ? n.filter(x => x < q1 - 1.5 * iqr || x > q3 + 1.5 * iqr).length : 0 });
+        } else {
+          const f = {}; filled.forEach(v => f[v] = (f[v] || 0) + 1);
+          const top = Object.entries(f).sort((a, b) => b[1] - a[1])[0];
+          c.top = top ? top[0] + " (" + top[1] + ")" : "";
+        }
+        return c;
+      });
+      return { rows: data.length, cols, dup };
+    }
+
+    function showReport(rows) {
+      const out = $("checkOut");
+      if (rows.length < 2 || rows[0].length < 1) { out.innerHTML = '<p class="empty">I found no data rows in that file. Check that the first row holds column names.</p>'; return; }
+      const P = profile(rows), nC = P.cols.length;
+      const cells = P.rows * nC, miss = P.cols.reduce((t, c) => t + c.missing, 0);
+      const missPct = cells ? miss / cells * 100 : 0, dupPct = P.rows ? P.dup / P.rows * 100 : 0;
+      const score = Math.max(0, Math.min(100, Math.round(100 - missPct * 1.5 - dupPct * 2)));
+
+      const finds = [];
+      const bad = P.cols.filter(c => c.total && c.missing / c.total > 0.1).sort((a, b) => b.missing - a.missing);
+      finds.push(bad.length
+        ? `${bad.length} column(s) are more than 10% empty, starting with ${bad.slice(0, 3).map(c => c.name + " (" + Math.round(c.missing / c.total * 100) + "%)").join(", ")}. I would decide how to fill or drop them before analysing.`
+        : "No column is more than 10% empty, so missing data is not a major risk.");
+      finds.push(P.dup ? `${P.dup} duplicate row(s) (${dupPct.toFixed(1)}%). Left in, they would double-count totals.` : "No duplicate rows found.");
+      const out2 = P.cols.filter(c => c.outliers).sort((a, b) => b.outliers - a.outliers);
+      if (out2.length) finds.push(`Unusual values in ${out2.slice(0, 3).map(c => c.name + " (" + c.outliers + ")").join(", ")}. I would check whether they are errors or real events.`);
+      const flat = P.cols.filter(c => c.unique <= 1 && c.total - c.missing > 0);
+      if (flat.length) finds.push(`${flat.map(c => c.name).join(", ")} hold a single value, so they add no information.`);
+
+      const tile = (v, l) => `<div class="stat"><b>${esc(v)}</b><span>${esc(l)}</span></div>`;
+      out.innerHTML = `
+        <div class="kpis">${tile(P.rows.toLocaleString(), "Rows")}${tile(nC, "Columns")}${tile(missPct.toFixed(1) + "%", "Cells empty")}${tile(P.dup, "Duplicate rows")}${tile(score + "/100", "Quality score")}</div>
+        <h3>What I would check first</h3>
+        <ul class="finds">${finds.map(f => `<li>${esc(f)}</li>`).join("")}</ul>
+        <div class="tbl-wrap"><table>
+          <thead><tr><th>Column</th><th>Type</th><th>Empty</th><th>Unique</th><th>Summary</th></tr></thead>
+          <tbody>${P.cols.slice(0, 40).map(c => {
+            const pct = c.total ? Math.round(c.missing / c.total * 100) : 0;
+            const sum = c.isNum ? `min ${nf(c.min)}, median ${nf(c.median)}, max ${nf(c.max)}` : (c.top ? "most common: " + c.top : "");
+            return `<tr><td>${esc(c.name)}</td><td>${c.isNum ? "Number" : "Text"}</td><td class="${pct > 10 ? "warn" : ""}">${pct}%</td><td>${c.unique.toLocaleString()}</td><td>${esc(sum)}</td></tr>`;
+          }).join("")}</tbody>
+        </table></div>
+        <p class="panel-note" style="padding:8px 0 0">The quality score is a simple heuristic: it drops with empty cells and duplicate rows.</p>`;
+      $("checkCta").hidden = false;
+      track("health_check", { rows: P.rows, columns: nC });
+    }
+
+    function handleFile(file) {
+      const out = $("checkOut");
+      if (!file) return;
+      if (file.size > MAX_BYTES) { out.innerHTML = '<p class="empty">That file is over 5 MB. Try a smaller sample of the rows.</p>'; return; }
+      const rd = new FileReader();
+      rd.onload = () => {
+        try {
+          const t = String(rd.result).replace(/^\uFEFF/, "");
+          showReport(parseCSV(t, detectDelim(t)));
+        } catch (e) { out.innerHTML = '<p class="empty">I couldn’t read that file. Save it as CSV and try again.</p>'; }
+      };
+      rd.onerror = () => { out.innerHTML = '<p class="empty">The file could not be opened. Try again.</p>'; };
+      rd.readAsText(file);
+    }
+
+    const drop = $("drop"), fileIn = $("fileIn");
+    drop.addEventListener("click", () => fileIn.click());
+    drop.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); fileIn.click(); } });
+    fileIn.addEventListener("change", () => handleFile(fileIn.files[0]));
+    ["dragenter", "dragover"].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add("over"); }));
+    ["dragleave", "drop"].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove("over"); }));
+    drop.addEventListener("drop", e => handleFile(e.dataTransfer.files[0]));
+    $("sampleBtn").addEventListener("click", () => {
+      const rows = [["region", "category", "month", "orders", "revenue"]]
+        .concat(sales.map((r, i) => [r.region, r.category, r.month, r.orders, i % 17 === 0 ? "" : (i === 3 ? 25000 : r.revenue)]));
+      rows.push(rows[5], rows[6], rows[7]);
+      showReport(rows.map(r => r.map(String)));
+    });
+
+    // Case study dialog
+    const cleanText = v => (v || "").replace(/\s*\(add[^)]*\)\.?/ig, "").trim();
+    const real = v => { v = cleanText(v); return v && !/^add /i.test(v) ? v : ""; };
+    const dlg = $("caseDialog");
+    function openCase(i) {
+      const p = projectsData[i]; if (!p) return;
+      const rows = [["Business question", real(p.question) || real(p.description)], ["Data", real(p.dataset)], ["Tools", p.tags.join(", ")], ["Finding", real(p.result)], ["Recommendation", real(p.action)]].filter(r => r[1]);
+      const links = [[p.liveUrl, "Live demo"], [p.githubUrl, "GitHub repo"], [p.kaggleUrl, "Kaggle"]].filter(l => l[0])
+        .map(l => `<a class="btn btn-outline btn-sm" href="${esc(l[0])}" target="_blank" rel="noopener">${l[1]}</a>`).join(" ");
+      $("caseBody").innerHTML = `<h3 id="caseTitle">${esc(p.title)}</h3>` + (p.status ? `<span class="status">${esc(p.status)}</span>` : "") +
+        rows.map(([k, v]) => `<div class="case-row"><b>${esc(k)}</b><p>${esc(v)}</p></div>`).join("") +
+        (links ? `<div class="hero-cta" style="margin:16px 0 0">${links}</div>` : "");
+      dlg.showModal();
+      track("case_open", { title: p.title });
+    }
+    grid.addEventListener("click", e => { const b = e.target.closest("[data-case]"); if (b) openCase(+b.dataset.case); });
+    $("caseClose").addEventListener("click", () => dlg.close());
+    dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+
+    // Testimonials: shown only when you add real quotes in CONFIG
+    function renderQuotes() {
+      if (!CONFIG.testimonials.length) return;
+      $("quoteList").innerHTML = CONFIG.testimonials.map(t => `<div class="box"><p>“${esc(t.quote)}”</p><h3 style="margin-top:8px">${esc(t.name)}${t.role ? ", " + esc(t.role) : ""}</h3></div>`).join("");
+      $("testimonials").hidden = false;
+    }
+    renderQuotes();
+
+    // ======================================================================
+    // 8. DASHBOARD: journey, Kaggle tiers, CI/CD status, Prompt Lab
+    // ======================================================================
+    const JOURNEY = [
+      { id: "math", name: "Mathematics", topics: ["Algebra and functions", "Probability basics", "Linear algebra basics", "Calculus intuition"] },
+      { id: "stats", name: "Statistics", topics: ["Descriptive statistics", "Distributions", "Hypothesis testing", "Correlation and regression"] },
+      { id: "sheets", name: "Spreadsheets", topics: ["Cleaning data", "Pivot tables", "QUERY and lookups", "Charts"] },
+      { id: "sql", name: "SQL", topics: ["SELECT and filters", "JOINs", "GROUP BY and aggregates", "Window functions and CTEs"] },
+      { id: "python", name: "Python and Pandas", topics: ["Python basics", "Pandas cleaning", "Groupby and merge", "Plotting"] },
+      { id: "viz", name: "Dashboards and storytelling", topics: ["Choosing charts", "Looker Studio or Power BI", "KPI design", "Presenting a finding"] },
+      { id: "de", name: "Data engineering", topics: ["ETL basics", "APIs and JSON", "Warehouses and schemas", "Data quality tests", "Git and CI/CD"] }
+    ];
+    const JKEY = "journey-v1";
+    let jDone = {};
+    try { jDone = JSON.parse(localStorage.getItem(JKEY) || "{}"); } catch (e) { jDone = {}; }
+    const saveJ = () => { try { localStorage.setItem(JKEY, JSON.stringify(jDone)); } catch (e) {} };
+    const stageStat = st => { const d = st.topics.filter((_, i) => jDone[st.id + ":" + i]).length; return { d, t: st.topics.length, pct: Math.round(d / st.topics.length * 100) }; };
+
+    function renderJourney(openIds) {
+      const cur = JOURNEY.find(st => stageStat(st).pct < 100) || JOURNEY[JOURNEY.length - 1];
+      const open = openIds || [cur.id];
+      $("journey").innerHTML = JOURNEY.map(st => {
+        const x = stageStat(st);
+        return `<details class="stage" data-id="${st.id}" ${open.includes(st.id) ? "open" : ""}>
+          <summary><span>${esc(st.name)}</span><div class="goal-track"><div class="goal-fill" style="width:${x.pct}%"></div></div><span class="pct">${x.pct}%</span></summary>
+          ${st.topics.map((t, i) => `<label><input type="checkbox" data-k="${st.id}:${i}" ${jDone[st.id + ":" + i] ? "checked" : ""}> ${esc(t)}</label>`).join("")}
+        </details>`;
+      }).join("");
+      const all = JOURNEY.reduce((a, st) => { const x = stageStat(st); return { d: a.d + x.d, t: a.t + x.t }; }, { d: 0, t: 0 });
+      $("kpiJourney").textContent = Math.round(all.d / all.t * 100) + "%";
+      $("kpiStage").textContent = cur.name;
+    }
+    $("journey").addEventListener("change", e => {
+      const k = e.target.dataset.k; if (!k) return;
+      e.target.checked ? jDone[k] = 1 : delete jDone[k];
+      saveJ();
+      renderJourney([...document.querySelectorAll("#journey details[open]")].map(d => d.dataset.id));
+    });
+
+    const TIERS = ["Novice", "Contributor", "Expert", "Master", "Grandmaster"];
+    const NEXT = { Novice: "Next: complete your profile and run your first public notebook.", Contributor: "Next: publish notebooks and earn your first medals.", Expert: "Next: aim for gold medals in one category.", Master: "Next: keep earning gold medals.", Grandmaster: "You are at the top tier." };
+    function renderTiers() {
+      const entries = Object.entries(CONFIG.kaggleTiers || {});
+      const idx = t => Math.max(0, TIERS.indexOf(t));
+      $("tierBox").innerHTML = entries.map(([cat, tier]) => `
+        <div class="tier-row"><span>${esc(cat)}</span><div class="tiers">${TIERS.map((n, i) => `<i class="${i < idx(tier) ? "done" : i === idx(tier) ? "now" : ""}">${n}</i>`).join("")}</div></div>`).join("");
+      const best = TIERS[Math.max(0, ...entries.map(([, t]) => idx(t)))];
+      $("kpiKaggle").textContent = best;
+      $("tierNext").textContent = NEXT[best];
+    }
+
+    const ago = d => { const m = Math.round((Date.now() - new Date(d)) / 6e4); return m < 60 ? m + " min ago" : m < 1440 ? Math.round(m / 60) + " h ago" : Math.round(m / 1440) + " days ago"; };
+    async function loadCI() {
+      const kpi = $("kpiCI"), panel = $("ciStatus");
+      if (!CONFIG.githubUser || !CONFIG.siteRepo) { kpi.textContent = "n/a"; panel.textContent = "Set siteRepo in CONFIG to show deploy status."; return; }
+      const u = encodeURIComponent(CONFIG.githubUser), repo = encodeURIComponent(CONFIG.siteRepo);
+      try {
+        const r = await fetch(`https://api.github.com/repos/${u}/${repo}/actions/workflows/${encodeURIComponent(CONFIG.ciWorkflow)}/runs?per_page=1`);
+        if (!r.ok) throw new Error(r.status);
+        const run = (await r.json()).workflow_runs[0];
+        if (!run) { kpi.textContent = "No runs"; panel.textContent = "The workflow exists but has not run yet."; return; }
+        const state = run.status !== "completed" ? "Running" : run.conclusion === "success" ? "Passing" : "Failing";
+        kpi.textContent = state; kpi.className = state === "Passing" ? "ok" : state === "Failing" ? "bad" : "";
+        panel.innerHTML = `Last run: <b>${state}</b>, ${ago(run.updated_at)}. <a href="${esc(run.html_url)}" target="_blank" rel="noopener" style="color:var(--g-blue)">View run</a>`;
+      } catch (e) {
+        kpi.textContent = "Not set up";
+        panel.textContent = "Add .github/workflows/ci.yml to the repository to switch on automatic checks and deploys.";
+      }
+    }
+
+    // ---- Prompt Lab ----
+    const PSTAGE = {
+      math: { label: "Mathematics", topics: "algebra, functions, probability and linear algebra basics", data: "small numeric tables (10 to 30 rows) that I can solve by hand, with an answer key at the end" },
+      stats: { label: "Statistics", topics: "descriptive statistics, distributions, hypothesis tests and correlation", data: "a 150-row CSV with two groups so I can run a t-test and a correlation, including a few missing values" },
+      sheets: { label: "Spreadsheets", topics: "cleaning data, pivot tables, QUERY and lookups", data: "a messy 200-row sales CSV with mixed date formats, duplicate rows, extra spaces and 5% blank cells" },
+      sql: { label: "SQL", topics: "SELECT, JOINs, GROUP BY, window functions and CTEs", data: "three related tables (customers, orders, products) as CREATE TABLE and INSERT statements, 50 to 100 rows in total" },
+      python: { label: "Python and Pandas", topics: "pandas cleaning, groupby, merge and plotting", data: "a CSV I can paste into pandas with 200 rows, 6 columns, 3 duplicates, 5% missing values and 2 outliers" },
+      viz: { label: "Dashboards and storytelling", topics: "choosing charts, KPI design and presenting a finding", data: "a 12-month KPI table (revenue, orders, churn) by region, with one hidden trend to discover" },
+      de: { label: "Data engineering", topics: "ETL, APIs and JSON, schemas, data quality tests, Git and CI/CD", data: "a sample JSON API response and a target table schema, plus 10 bad records to test data quality checks" }
+    };
+    function buildPrompt(stage, level, want, text) {
+      const S = PSTAGE[stage], L = [];
+      L.push("Act as a patient senior data analyst and mentor.");
+      L.push(`My level: ${level}. My journey stage: ${S.label} (${S.topics}).`);
+      if (text && text.trim()) L.push(`What I asked originally: "${text.trim()}"`);
+      L.push("Task: " + {
+        data: `Create a synthetic practice dataset for me: ${S.data}. Show it as a CSV or SQL block I can copy. Then write 5 practice questions, ordered from easy to hard.`,
+        exercises: `Write 6 practice exercises on ${S.topics}, ordered from easy to hard, using ${S.data}. Give a worked solution for each.`,
+        kaggle: `Suggest 5 types of real Kaggle datasets that suit ${S.label} at my level. For each, give search keywords, the business question it could answer and one cleaning problem to expect.`,
+        plan: `Build a 4-week study plan for ${S.label} with 5 short sessions per week. Each session needs one topic, one task and one measurable check.`
+      }[want]);
+      L.push("Format: use headings, put code or data in code blocks, and keep explanations short and plain.");
+      L.push("Check my learning: finish with 3 quiz questions and an answer key.");
+      L.push("If anything is unclear, ask me one question before you answer.");
+      return L.join("\n");
+    }
+    const CHECKS = [
+      { k: "Role", re: /\b(act as|you are|as a|pretend)\b/i, tip: "Tell the AI who to be, for example a patient senior data analyst." },
+      { k: "Clear task", re: /\b(give|generate|create|write|explain|list|suggest|build|make|show|recommend|design)\b/i, tip: "Start with an action word such as generate, explain or build." },
+      { k: "Topic", re: /\b(math|statistic|probab|algebra|sql|python|pandas|excel|sheet|dashboard|etl|pipeline|data engineering|visuali[sz]ation)/i, tip: "Name the topic, for example SQL window functions." },
+      { k: "Your level", re: /\b(beginner|intermediate|advanced|junior|entry|new to|just started)\b/i, tip: "Say your level so the answer is not too easy or too hard." },
+      { k: "Data details", re: /\b(csv|rows?|columns?|dataset|table|schema|json|records?)\b/i, tip: "Describe the data: format, number of rows and columns." },
+      { k: "Output format", re: /\b(table|steps?|bullet|code block|csv|markdown|json|numbered|format)\b/i, tip: "Say how you want the answer: a table, numbered steps or a code block." },
+      { k: "Practice and answers", re: /\b(exercise|solution|answer key|quiz|practice|worked)\b/i, tip: "Ask for exercises plus solutions so you can check yourself." },
+      { k: "Enough detail", test: t => t.trim().split(/\s+/).filter(Boolean).length >= 20, tip: "Aim for 20 words or more, with context and a goal." }
+    ];
+    function checkPrompt() {
+      const text = $("pText").value, box = $("pResult");
+      if (!text.trim()) { box.innerHTML = "<p>Type a prompt first, or press “Try a weak example”.</p>"; return; }
+      const res = CHECKS.map(c => ({ ...c, ok: c.test ? c.test(text) : c.re.test(text) }));
+      const score = Math.round(res.filter(r => r.ok).length / res.length * 100);
+      const label = score >= 85 ? "Strong" : score >= 60 ? "Good" : "Needs work";
+      const fixed = buildPrompt($("pStage").value, $("pLevel").value, $("pWant").value, text);
+      box.innerHTML = `
+        <div class="score">${score}/100 <small style="font-size:.9rem;font-weight:600;color:var(--text-muted)">${label}</small></div>
+        <ul class="checks">${res.map(r => `<li><span class="${r.ok ? "y" : "n"}">${r.ok ? "✓" : "✗"}</span><span>${esc(r.k)}${r.ok ? "" : `<small>${esc(r.tip)}</small>`}</span></li>`).join("")}</ul>
+        <label for="pOut">Corrected prompt</label>
+        <textarea id="pOut" rows="10" readonly>${esc(fixed)}</textarea>
+        <div class="hero-cta" style="margin:12px 0 0">
+          <button class="btn btn-primary btn-sm" id="pCopy" type="button">Copy corrected prompt</button>
+          <a class="btn btn-outline btn-sm" href="https://claude.ai/new" target="_blank" rel="noopener">Open Claude</a>
+        </div>`;
+      track("prompt_check", { score });
+    }
+    async function copyText(t, btn) {
+      try { await navigator.clipboard.writeText(t); }
+      catch (e) { const ta = document.createElement("textarea"); ta.value = t; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); } catch (_) {} ta.remove(); }
+      const old = btn.textContent; btn.textContent = "Copied ✓"; setTimeout(() => btn.textContent = old, 1600);
+      track("copy_prompt", {});
+    }
+    function renderLab() {
+      $("pStage").innerHTML = Object.entries(PSTAGE).map(([k, v]) => `<option value="${k}">${esc(v.label)}</option>`).join("");
+      $("pLibrary").innerHTML = Object.entries(PSTAGE).map(([k, v]) => `
+        <div class="box"><h3>${esc(v.label)}</h3><p>${esc(v.topics)}</p>
+        <button class="btn btn-outline btn-sm" style="margin-top:10px" type="button" data-copy-stage="${k}">Copy practice-data prompt</button></div>`).join("");
+    }
+    $("pCheck").addEventListener("click", checkPrompt);
+    $("pExample").addEventListener("click", () => { $("pText").value = "give me data to practice " + PSTAGE[$("pStage").value].label; checkPrompt(); });
+    document.addEventListener("click", e => {
+      const lib = e.target.closest("[data-copy-stage]");
+      if (lib) copyText(buildPrompt(lib.dataset.copyStage, $("pLevel").value, "data", ""), lib);
+      if (e.target.id === "pCopy") copyText($("pOut").value, e.target);
+    });
+    renderLab(); renderJourney(); renderTiers(); loadCI();
+
+    // Init
+    initGA();
+    renderKaggle();
+    renderLooker();
+    loadSheets().then(changed => {
+      if (changed) { renderGoals(); renderChart(); renderStats(); renderProjects(); }
+    });
+    renderGoals();
+    renderChart();
+    loadRepos();
+    if (CONFIG.githubUser) loadProfile();
+    renderStats();
+    setCategory("All");
+    runQuery();
+  </script>
+</body>
+</html>

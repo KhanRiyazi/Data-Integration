@@ -1,0 +1,64 @@
+# Continuous integration + continuous deployment for the portfolio.
+# Setup: repo Settings > Pages > Build and deployment > Source = "GitHub Actions".
+name: CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "0 3 * * 1"      # weekly check for broken links
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: HTML structure check
+        run: npx --yes htmlhint@1.1.4 --rules doctype-first,tag-pair,id-unique,attr-no-duplication,title-require index.html
+      - name: JavaScript and JSON-LD syntax check
+        run: |
+          node -e "
+          const s = require('fs').readFileSync('index.html', 'utf8');
+          for (const m of s.matchAll(/<script>([\s\S]*?)<\/script>/g)) new Function(m[1]);
+          JSON.parse(s.match(/ld\+json\">([\s\S]*?)<\/script>/)[1]);
+          console.log('scripts and structured data are valid');
+          "
+      - name: Link check (reports, does not block deploy)
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --no-progress --accept 200,206,403,429 --exclude 'linkedin.com' --exclude 'api.github.com' index.html
+          fail: false
+
+  deploy:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: validate
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - name: Stage site files
+        run: |
+          mkdir _site
+          cp index.html _site/
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4
