@@ -3869,9 +3869,9 @@
       booking: "",             // Google Calendar appointment schedule link
       ga4Id: "",               // Google Analytics 4 id, e.g. G-XXXXXXXXXX
       backend: {               // Google Sheet database through Apps Script (see backend/SETUP.md)
-        url: "",               // Web app URL ending in /exec
-        clientId: "",          // OAuth Web client ID (Google Cloud Console)
-        sheetUrl: "",          // link to your Google Sheet, for the Open Google Sheet button
+        url: "https://script.google.com/macros/s/AKfycbyE1V4sDsLvEWruI8hXIEtrZPoFIdNyuIA9xTIZm_f-DO7T9kFh80FDWYAGaS3W2ibl/exec",               // Web app URL ending in /exec
+        clientId: "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",          // OAuth Web client ID (Google Cloud Console)
+        sheetUrl: "https://docs.google.com/spreadsheets/d/17XrHW5rboBHPzBZcmGBIr6M_HjGijqArGZnT_2IgaA8/edit?gid=414563904#gid=414563904",          // link to your Google Sheet, for the Open Google Sheet button
         autoSync: true
       },
       testimonials: [],        // real client quotes only: [{ quote: "...", name: "...", role: "..." }]
@@ -5188,8 +5188,8 @@
     ["result", "Result", "text"], ["tags", "Tools (commas)", "text"], ["status", "Status", "select", STATUSES], ["dataset", "Dataset", "text"],
     ["live_url", "Live URL", "url"], ["github_url", "GitHub URL", "url"], ["kaggle_url", "Kaggle URL", "url"], ["question", "Question", "text"], ["action", "Recommendation", "text"]];
     $("pmFields").innerHTML = PFIELDS.map(([k, l, t, o]) => `<div class="grow"><label for="pf-${k}">${l}</label>${t === "select" ? `<select id="pf-${k}">${o.map(x => `<option>${x}</option>`).join("")}</select>`
-        : t === "textarea" ? `<textarea id="pf-${k}" rows="2" maxlength="600"></textarea>`
-          : `<input id="pf-${k}" type="${t}" maxlength="300" autocomplete="off">`}</div>`).join("")
+      : t === "textarea" ? `<textarea id="pf-${k}" rows="2" maxlength="600"></textarea>`
+        : `<input id="pf-${k}" type="${t}" maxlength="300" autocomplete="off">`}</div>`).join("")
       + '<div class="grow"><label for="pf-published">Published</label><div><label style="width:auto;font-weight:500"><input type="checkbox" id="pf-published" checked> Visible to every visitor</label></div></div>';
     const notice = t => `<p class="panel-note" style="padding:8px 0">${esc(t)}</p>`;
     function renderProjectManager() {

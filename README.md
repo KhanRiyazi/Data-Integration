@@ -19,7 +19,7 @@ This is what keeps strangers out of your data.
 3. **APIs & Services > Credentials > Create credentials > OAuth client ID > Web application**.
 4. Under **Authorized JavaScript origins** add your site origin exactly, with no trailing slash:
    `https://khanriyazi.github.io` (and `https://khanriyazi.in` if you use that domain).
-5. Copy the **Client ID**.
+5. Copy the **Client ID**. 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
 
 ## 3. Tell the script who you are
 In Apps Script: **Project Settings > Script properties > Add script property**
