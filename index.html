@@ -2866,9 +2866,10 @@
     <div class="nav-actions">
       <button class="icon-btn" id="syncBtn" type="button" data-state="off" aria-label="Sync with Google Sheet"
         title="Sync with Google Sheet">☁️</button>
-      <button class="icon-btn" id="themeBtn" title="Toggle dark mode" aria-label="Toggle dark mode">🌓</button>
-      <button class="icon-btn" id="launcherBtn" title="Quick links" aria-label="Quick links" aria-expanded="false"
-        aria-controls="launcherMenu">
+      <button type="button" class="icon-btn" id="themeBtn" title="Toggle dark mode"
+        aria-label="Toggle dark mode">🌓</button>
+      <button type="button" class="icon-btn" id="launcherBtn" title="Quick links" aria-label="Quick links"
+        aria-expanded="false" aria-controls="launcherMenu">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path
             d="M6,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM16,6c0,1.1 0.9,2 2,2s2,-0.9 2,-2 -0.9,-2 -2,-2 -2,0.9 -2,2zM12,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2z" />
@@ -2885,16 +2886,16 @@
         <a href="https://github.com/KhanRiyazi" data-link="github" class="launcher-item">
           <div class="launcher-icon">🐙</div><span>GitHub</span>
         </a>
-        <button class="launcher-item" data-cat="SQL">
+        <button type="button" class="launcher-item" data-cat="SQL">
           <div class="launcher-icon">🗄️</div><span>SQL</span>
         </button>
-        <button class="launcher-item" data-cat="Python">
+        <button type="button" class="launcher-item" data-cat="Python">
           <div class="launcher-icon">🐍</div><span>Python</span>
         </button>
-        <button class="launcher-item" data-cat="Dashboard">
+        <button type="button" class="launcher-item" data-cat="Dashboard">
           <div class="launcher-icon">📊</div><span>Dashboards</span>
         </button>
-        <button class="launcher-item" data-cat="Web App">
+        <button type="button" class="launcher-item" data-cat="Web App">
           <div class="launcher-icon">🚀</div><span>Live apps</span>
         </button>
         <p class="launcher-h">My workspace</p>
@@ -2993,7 +2994,7 @@
   <div class="scrim" id="scrim"></div>
 
   <main id="top">
-    <div class="fbar" aria-label="Current section and mission">
+    <div class="fbar" role="group" aria-label="Current section and mission">
       <div class="namebox" id="nameBox">Home</div>
       <button class="fxmark" id="fxBtn" type="button" aria-haspopup="dialog" aria-expanded="false"
         aria-controls="fxPanel" title="Formula library: Excel and Google Sheets">fx</button>
@@ -3019,7 +3020,7 @@
           <a href="#check" class="btn btn-primary">Try the free data health check</a>
           <a href="#projects" class="btn btn-outline">See my projects</a>
         </div>
-        <div class="skill-chips" id="skills" aria-label="Core skills">
+        <div class="skill-chips" id="skills" role="group" aria-label="Core skills">
           <span class="chip">SQL</span><span class="chip">Python / Pandas</span><span class="chip">Power BI</span><span
             class="chip">Excel &amp; Sheets</span><span class="chip">Looker Studio</span><span class="chip">Data
             cleaning</span>
@@ -3027,7 +3028,7 @@
       </div>
 
       <!-- Signature element: a query and its result -->
-      <div class="query-panel" aria-label="Example SQL query and result">
+      <div class="query-panel" role="group" aria-label="Example SQL query and result">
         <div class="panel-bar">
           <span class="ctrl">
             <select id="metric" aria-label="Metric">
@@ -3055,7 +3056,7 @@
     <section class="mission" id="mission">
       <div class="mission-in">
         <span class="mission-tag">My mission</span>
-        <h2 id="missionText"></h2>
+        <h2 id="missionText">My mission</h2>
         <p id="missionSub"></p>
         <div class="phases" id="phases"></div>
         <div class="goal-track">
@@ -3297,11 +3298,11 @@
 
       </div>
       <div class="filter-pills" id="filterPills" role="group" aria-label="Filter by category">
-        <button class="pill active" data-category="All">All</button>
-        <button class="pill" data-category="Dashboard">BI dashboards</button>
-        <button class="pill" data-category="Python">Python &amp; EDA</button>
-        <button class="pill" data-category="SQL">SQL analysis</button>
-        <button class="pill" data-category="Web App">Live web apps</button>
+        <button type="button" class="pill active" data-category="All">All</button>
+        <button type="button" class="pill" data-category="Dashboard">BI dashboards</button>
+        <button type="button" class="pill" data-category="Python">Python &amp; EDA</button>
+        <button type="button" class="pill" data-category="SQL">SQL analysis</button>
+        <button type="button" class="pill" data-category="Web App">Live web apps</button>
       </div>
     </section>
 
@@ -3416,7 +3417,8 @@
         live from GitHub, so you can open the real code and see recent activity.</p>
       <div class="learn">
         <div class="box">
-          <div class="chart-wrap"><canvas id="skillChart" aria-label="Skill level versus target"></canvas></div>
+          <div class="chart-wrap"><canvas id="skillChart" role="img" aria-label="Skill level versus target"></canvas>
+          </div>
           <div id="skillFallback"></div>
         </div>
         <div>
@@ -3529,7 +3531,7 @@
       <div id="gp-tasks" role="tabpanel" aria-labelledby="gtab-tasks" hidden>
         <div class="grow">
           <label for="taskIn">New task</label>
-          <input id="taskIn" maxlength="140" placeholder="Type a task and press Enter" autocomplete="off">
+          <input id="taskIn" type="text" maxlength="140" placeholder="Type a task and press Enter" autocomplete="off">
           <select id="taskTag" aria-label="Task type">
             <option>Learn</option>
             <option>Practice</option>
@@ -3858,7 +3860,7 @@
       featuredRepos: ["growthChart", "Graphic-Designer", "PRACTICE"],  // shown first; empty = latest pushed
       ciWorkflow: "ci.yml",    // workflow file in .github/workflows
       kaggle: "",              // https://www.kaggle.com/your-username
-      siteRepo: "Link-Project",  // repository that holds this page and .github/workflows/ci.yml
+      siteRepo: "Data-Integration",  // repository that holds this page and .github/workflows/ci.yml
       kaggleTiers: { Competitions: "Novice", Datasets: "Novice", Notebooks: "Novice", Discussion: "Novice" },  // copy from your Kaggle profile
       // Google Sheets as your CMS: File > Share > Publish to web > choose the tab > CSV, paste the link
       sheetProjectsCsv: "",    // tab "Projects": use the Download template button for columns
@@ -3869,9 +3871,9 @@
       booking: "",             // Google Calendar appointment schedule link
       ga4Id: "",               // Google Analytics 4 id, e.g. G-XXXXXXXXXX
       backend: {               // Google Sheet database through Apps Script (see backend/SETUP.md)
-        url: "https://script.google.com/macros/s/AKfycbyE1V4sDsLvEWruI8hXIEtrZPoFIdNyuIA9xTIZm_f-DO7T9kFh80FDWYAGaS3W2ibl/exec",               // Web app URL ending in /exec
-        clientId: "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",          // OAuth Web client ID (Google Cloud Console)
-        sheetUrl: "https://docs.google.com/spreadsheets/d/17XrHW5rboBHPzBZcmGBIr6M_HjGijqArGZnT_2IgaA8/edit?gid=414563904#gid=414563904",          // link to your Google Sheet, for the Open Google Sheet button
+        url: "https://script.google.com/macros/s/AKfycbyE1V4sDsLvEWruI8hXIEtrZPoFIdNyuIA9xTIZm_f-DO7T9kFh80FDWYAGaS3W2ibl/exec",   // Web app URL ending in /exec
+        clientId: "206070140939-1ckoeq263q19bl5273nkee7lq5dqgu3p.apps.googleusercontent.com",   // OAuth Web client ID (never the client secret)
+        sheetUrl: "https://docs.google.com/spreadsheets/d/17XrHW5rboBHPzBZcmGBIr6M_HjGijqArGZnT_2IgaA8/edit",   // your Google Sheet
         autoSync: true
       },
       testimonials: [],        // real client quotes only: [{ quote: "...", name: "...", role: "..." }]
@@ -3931,7 +3933,7 @@
     // Official links from CONFIG
     document.querySelectorAll("[data-link]").forEach(a => {
       const k = a.dataset.link;
-      const href = k === "email" ? (CONFIG.email ? "mailto:" + CONFIG.email : CONFIG.site) : CONFIG[k];
+      const href = k === "email" ? (CONFIG.email ? "mailto:" + CONFIG.email : CONFIG.site) : k === "github" ? (CONFIG.githubUser ? "https://github.com/" + CONFIG.githubUser : "") : CONFIG[k];
       if (href) { a.href = href; a.hidden = false; }
     });
 
@@ -4475,7 +4477,7 @@
       $("learnBody").innerHTML = `<p style="color:var(--text-secondary);margin-bottom:14px">${esc(L.note)}</p><div class="lnks">${L.links.map(([n, u, t]) =>
         `<a class="lnk" href="${esc(u)}" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">${ICONS[t] || "🔗"}</span><span><b>${esc(n)}</b><small>${esc(t)}</small></span><span class="go" aria-hidden="true">↗</span></a>`).join("")}</div>`;
       $("learnTabs").innerHTML = LEARN.map((l, i) =>
-        `<button class="tab" role="tab" id="tab${i}" aria-selected="${i === learnTab}" aria-controls="learnBody" tabindex="${i === learnTab ? 0 : -1}" data-i="${i}">${esc(l.tab)}</button>`).join("");
+        `<button type="button" class="tab" role="tab" id="tab${i}" aria-selected="${i === learnTab}" aria-controls="learnBody" tabindex="${i === learnTab ? 0 : -1}" data-i="${i}">${esc(l.tab)}</button>`).join("");
     }
     $("learnTabs").addEventListener("click", e => { const b = e.target.closest("[data-i]"); if (b) { learnTab = +b.dataset.i; renderLearn(); track("learn_tab", { tab: learnTab }); } });
     $("learnTabs").addEventListener("keydown", e => {
@@ -4776,7 +4778,7 @@
       }
       $("updBody").setAttribute("aria-labelledby", "utab" + updTab);
       $("updBody").innerHTML = html;
-      $("updTabs").innerHTML = UPD.map((u, i) => `<button class="tab" role="tab" id="utab${i}" aria-selected="${i === updTab}" aria-controls="updBody" tabindex="${i === updTab ? 0 : -1}" data-i="${i}">${esc(u.tab)}</button>`).join("");
+      $("updTabs").innerHTML = UPD.map((u, i) => `<button type="button" class="tab" role="tab" id="utab${i}" aria-selected="${i === updTab}" aria-controls="updBody" tabindex="${i === updTab ? 0 : -1}" data-i="${i}">${esc(u.tab)}</button>`).join("");
     }
     $("updTabs").addEventListener("click", e => { const b = e.target.closest("[data-i]"); if (b) { updTab = +b.dataset.i; renderUpdates(); track("updates_tab", { tab: UPD[updTab].tab }); } });
     $("updTabs").addEventListener("keydown", e => {
@@ -4809,7 +4811,7 @@
         const b = $("gtab-" + k); b.setAttribute("aria-selected", k === t); b.tabIndex = k === t ? 0 : -1;
       });
       try { localStorage.setItem("ws-tab", t); } catch (e) { }
-      try { if (t === "projects") renderProjectManager(); if (t === "sync") renderStatus(); } catch (e) { /* sync code loads later; it renders itself at start-up */ }
+      try { if (t === "projects") renderProjectManager(); if (t === "sync") { renderStatus(); renderGsi(); } } catch (e) { /* sync code loads later; it renders itself at start-up */ }
     }
     function setMax(on) {
       gw.classList.toggle("max", on); gScrim.classList.toggle("show", on);
@@ -5009,7 +5011,7 @@
         <h3 style="margin:18px 0 8px">Kaggle links</h3>${linksHTML(KLINKS)}`;
       $("mBody").setAttribute("aria-labelledby", "mtab" + mTab);
       $("mBody").innerHTML = html;
-      $("mTabs").innerHTML = M_TABS.map((t, i) => `<button class="tab" role="tab" id="mtab${i}" aria-selected="${i === mTab}" aria-controls="mBody" tabindex="${i === mTab ? 0 : -1}" data-i="${i}">${esc(t)}</button>`).join("");
+      $("mTabs").innerHTML = M_TABS.map((t, i) => `<button type="button" class="tab" role="tab" id="mtab${i}" aria-selected="${i === mTab}" aria-controls="mBody" tabindex="${i === mTab ? 0 : -1}" data-i="${i}">${esc(t)}</button>`).join("");
       updateReadyKPI();
     }
     function goTo(v) {
@@ -5086,6 +5088,7 @@
       $("syncLast").textContent = S.last ? new Date(S.last).toLocaleString() : "Never";
       $("syncBtn").dataset.state = dot;
       $("syncOut").hidden = !signed; $("syncNow").disabled = !signed; $("syncSeed").disabled = !signed;
+      $("gsiBtn").closest(".grow").hidden = signed;
       $("gStatus").textContent = signed ? (S.err ? "Sync error" : S.last ? "Synced " + ago(S.last) : "Signed in")
         : url ? "Saved on this device. Sign in to sync." : (lastEdit ? "Saved " + ago(lastEdit) : "All changes saved");
     }
@@ -5100,6 +5103,7 @@
         return j;
       } catch (e) {
         if (e.name === "AbortError") throw new Error("The backend took too long to answer.");
+        if (e instanceof SyntaxError) throw new Error("The backend sent a web page, not data. Redeploy the web app with access set to Anyone.");
         if (e instanceof TypeError) throw new Error("Could not reach the backend. Check the URL and that the web app is deployed for Anyone.");
         throw e;
       } finally { clearTimeout(to); }
@@ -5154,8 +5158,14 @@
       S.token = ""; S.email = ""; S.exp = 0;
       try { sessionStorage.removeItem("gid"); } catch (e) { }
       if (window.google && google.accounts) google.accounts.id.disableAutoSelect();
-      renderStatus(); renderProjectManager(); loadPublicProjects();
+      renderStatus(); renderProjectManager(); loadPublicProjects(); renderGsi();
       setSyncMsg(expired ? "Your session ended. Sign in again to keep syncing." : "Signed out.");
+    }
+    let gsiReady = false;
+    function renderGsi() {
+      if (!gsiReady || S.token || $("gp-sync").hidden) return;     // only draw it while the Sync tab is visible
+      $("gsiBtn").innerHTML = "";
+      google.accounts.id.renderButton($("gsiBtn"), { theme: "outline", size: "large", shape: "pill", text: "signin_with" });
     }
     function initAuth() {
       try { const t = sessionStorage.getItem("gid"); if (t && (jwtPayload(t).exp || 0) * 1000 > Date.now() + 60000) setToken(t); else sessionStorage.removeItem("gid"); } catch (e) { }
@@ -5165,7 +5175,7 @@
       sc.src = "https://accounts.google.com/gsi/client"; sc.async = true;
       sc.onload = () => {
         google.accounts.id.initialize({ client_id: CONFIG.backend.clientId, callback: r => { setToken(r.credential); syncNow("manual"); } });
-        google.accounts.id.renderButton($("gsiBtn"), { theme: "outline", size: "large", shape: "pill", text: "signin_with" });
+        gsiReady = true; renderGsi();
       };
       document.head.appendChild(sc);
       if (S.token) syncNow("auto");
@@ -5188,8 +5198,8 @@
     ["result", "Result", "text"], ["tags", "Tools (commas)", "text"], ["status", "Status", "select", STATUSES], ["dataset", "Dataset", "text"],
     ["live_url", "Live URL", "url"], ["github_url", "GitHub URL", "url"], ["kaggle_url", "Kaggle URL", "url"], ["question", "Question", "text"], ["action", "Recommendation", "text"]];
     $("pmFields").innerHTML = PFIELDS.map(([k, l, t, o]) => `<div class="grow"><label for="pf-${k}">${l}</label>${t === "select" ? `<select id="pf-${k}">${o.map(x => `<option>${x}</option>`).join("")}</select>`
-      : t === "textarea" ? `<textarea id="pf-${k}" rows="2" maxlength="600"></textarea>`
-        : `<input id="pf-${k}" type="${t}" maxlength="300" autocomplete="off">`}</div>`).join("")
+        : t === "textarea" ? `<textarea id="pf-${k}" rows="2" maxlength="600"></textarea>`
+          : `<input id="pf-${k}" type="${t}" maxlength="300" autocomplete="off">`}</div>`).join("")
       + '<div class="grow"><label for="pf-published">Published</label><div><label style="width:auto;font-weight:500"><input type="checkbox" id="pf-published" checked> Visible to every visitor</label></div></div>';
     const notice = t => `<p class="panel-note" style="padding:8px 0">${esc(t)}</p>`;
     function renderProjectManager() {
